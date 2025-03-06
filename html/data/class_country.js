@@ -1,1 +1,1 @@
-const tamere = "lol";
+console.table(countries);
