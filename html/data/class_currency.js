@@ -24,12 +24,12 @@ class Currency {
             });
         });
 
-        this.all_currencies = Array.from(uniqueCurrencies.values());
+        this.all_currencies = Array.from(uniqueCurrencies.entries());
     }
 }
 
-// ✅ Exécution de la méthode statique
 Currency.fill_currencies();
 
-// ✅ Affichage de toutes les devises uniques
-console.table(Currency.all_currencies);
+Currency.all_currencies.forEach(([code, currency]) => {
+    console.log(currency.toString()); // test de la méthode toString() sur chaque objet (et ça fonctione :) )
+});
