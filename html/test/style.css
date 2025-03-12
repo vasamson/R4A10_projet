@@ -121,72 +121,49 @@ footer p {
 /////////////////////////////////////////////////////// CLASS CURRENCY ///////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/* Conteneur pour les cartes de pays, devises, et langues */
-#currencies-list, #countries-list, #languages-list {
+/* Liste des devises (4 cartes par ligne) */
+#currencies-list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
     gap: 20px;
+    padding: 30px;
+    background-color: #fff;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 1200px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Style pour chaque carte */
-.currency-card, .country-card, .language-card {
-    background-color: #fff;
-    border: 1px solid #ddd;
+/* Style de chaque carte */
+.currency-card {
+    background-color: #ecf0f1;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: transform 0.3s;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.currency-card:hover, .country-card:hover, .language-card:hover {
-    transform: scale(1.05);
+.currency-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Titre des cartes */
-.currency-card h3, .country-card h3, .language-card h3 {
+/* Style des éléments à l'intérieur des cartes */
+.currency-card h3 {
     font-size: 1.5em;
-    color: #34495e;
+    color: #3498db;
     margin-bottom: 10px;
 }
 
-/* Description dans les cartes */
-.currency-card p, .country-card p, .language-card p {
+.currency-card p {
     font-size: 1.1em;
     color: #7f8c8d;
-    margin: 5px 0;
+    margin-bottom: 5px;
 }
 
-/* Carte de devise : code et symbole */
-.currency-code {
+.currency-card span {
     font-weight: bold;
-    color: #2c3e50;
-}
-
-.currency-symbol {
-    font-size: 1.5em;
-    color: #1abc9c;
-}
-
-/* Style des cartes de pays et de langues */
-.country-card, .language-card {
-    background-color: #ecf0f1;
-}
-
-/* Responsivité - Pour les écrans de taille moyenne */
-@media (max-width: 1024px) {
-    #currencies-list, #countries-list, #languages-list {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* Responsivité - Pour les petits écrans */
-@media (max-width: 768px) {
-    #currencies-list, #countries-list, #languages-list {
-        grid-template-columns: 1fr;
-    }
+    color: #34495e;
 }
