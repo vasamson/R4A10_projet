@@ -39,5 +39,5 @@ class Country {
 
 Country.fill_countries();
 Country.all_countries.forEach((countryObj, code) => {
-    console.log(`${code} =>`, countryObj);
+    console.table(`${code} =>`, countryObj);
 });
