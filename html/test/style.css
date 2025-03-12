@@ -15,13 +15,6 @@ header {
     text-align: center;
 }
 
-/* Style pour l'image en haut de la page */
-.header-image {
-    width: 100%; /* L'image prend toute la largeur */
-    height: auto; /* Maintient le ratio de l'image */
-    display: block; /* Évite les espaces sous l'image */
-}
-
 /* Container du logo */
 .logo-container h1 {
     margin: 0;
