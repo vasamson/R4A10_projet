@@ -197,6 +197,7 @@ footer p {
 
 /* Conteneur du carousel */
 .carousel {
+    position: relative;
     overflow: hidden;
     width: 100%;
 }
@@ -209,19 +210,13 @@ footer p {
 
 /* Style des images dans le carousel */
 .carousel-image {
-    width: 100%;
-    max-width: 100%;
-    object-fit: cover; /* Ajuste l'image sans déformation */
-    margin-right: 10px;
-}
-
-/* Pour que les images prennent toute la largeur disponible */
-.carousel-images img {
+    flex-shrink: 0; /* Empêche l'image de se rétrécir */
     width: 100%;
     height: 300px; /* Hauteur des images dans le carousel */
+    object-fit: cover; /* Ajuste l'image sans déformation */
 }
 
-/* Style pour le carousel (optionnel, pour ajouter des boutons) */
+/* Boutons de navigation du carousel */
 .carousel-prev, .carousel-next {
     position: absolute;
     top: 50%;
@@ -240,4 +235,9 @@ footer p {
 
 .carousel-next {
     right: 10px;
+}
+
+/* Amélioration des boutons lorsqu'ils sont survolés */
+.carousel-prev:hover, .carousel-next:hover {
+    background-color: rgba(0, 0, 0, 0.8);
 }
