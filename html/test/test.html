@@ -25,11 +25,12 @@
         <li><a href="#countries-list">Pays</a></li>
         <li><a href="#about">À propos</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="javascript:void(0);" onclick="toggleTestSection()">Test</a></li> <!-- Bouton Test -->
     </ul>
 </nav>
 
-<!-- Section des tests -->
-<section id="tests">
+<!-- Section des tests (cachée au départ) -->
+<section id="tests" style="display: none;">
     <h2>Tests à effectuer</h2>
     <div class="test-buttons">
         <button onclick="outsideTheContinent()">Q1 - Pays avec voisins sur différents continents</button>
@@ -62,6 +63,18 @@
 <script src="../data/class_currency.js"></script>
 <script src="../data/class_language.js"></script>
 <script src="test.js"></script>
+
+<script>
+    // Fonction pour afficher/masquer la section des tests
+    function toggleTestSection() {
+        const testSection = document.getElementById('tests');
+        if (testSection.style.display === 'none' || testSection.style.display === '') {
+            testSection.style.display = 'block'; // Afficher les tests
+        } else {
+            testSection.style.display = 'none'; // Masquer les tests
+        }
+    }
+</script>
 
 </body>
 </html>
