@@ -122,7 +122,7 @@ footer p {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 */
 /* Liste des devises (4 cartes par ligne) */
-#currencies-list {
+#countries-list {
     display: grid;
     grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
     gap: 20px;
