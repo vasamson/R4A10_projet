@@ -48,6 +48,9 @@
 <section id="continent-carousel" class="carousel-container">
     <h2>Explorez les Continents</h2>
     <div class="carousel">
+        <button class="carousel-prev" onclick="goToPrevImage()">&#10094;</button>
+        <button class="carousel-next" onclick="goToNextImage()">&#10095;</button>
+
         <div class="carousel-images">
             <img src="chemin/vers/image-afrique.jpg" alt="Afrique" class="carousel-image">
             <img src="chemin/vers/image-asie.jpg" alt="Asie" class="carousel-image">
@@ -89,6 +92,47 @@
         }
     }
 </script>
+
+<script>
+    let currentIndex = 0;
+    const images = document.querySelectorAll('.carousel-image');
+    const totalImages = images.length;
+
+    // Fonction pour changer l'image du carousel
+    function moveCarousel() {
+        if (currentIndex >= totalImages - 1) {
+            currentIndex = 0;
+        } else {
+            currentIndex++;
+        }
+
+        // Déplacer le carousel à la position souhaitée
+        document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    // Faire défiler toutes les 3 secondes
+    setInterval(moveCarousel, 3000);
+
+    // Fonction pour naviguer manuellement dans le carousel
+    function goToNextImage() {
+        if (currentIndex >= totalImages - 1) {
+            currentIndex = 0;
+        } else {
+            currentIndex++;
+        }
+        document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    function goToPrevImage() {
+        if (currentIndex <= 0) {
+            currentIndex = totalImages - 1;
+        } else {
+            currentIndex--;
+        }
+        document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+</script>
+
 
 </body>
 </html>
