@@ -1,38 +1,52 @@
 // Assurez-vous que les classes Currency et Language sont bien définies dans leurs fichiers respectifs
 // et que les données de 'countries' sont disponibles.
+
 document.addEventListener("DOMContentLoaded", function () {
-    // S'assurer que les classes et données sont disponibles
-    if (typeof Currency !== 'undefined' && typeof Language !== 'undefined' && typeof countries !== 'undefined') {
+    if (typeof CurrencyManager !== 'undefined' && typeof LanguageManager !== 'undefined') {
 
-        // Remplir les informations sur les devises et les langues
-        Currency.fill_currencies();  // Remplir la liste des devises
-        Language.fill_languages();   // Remplir la liste des langues
+        // Remplir les devises et langues
+        CurrencyManager.fill_currencies();
+        LanguageManager.fill_languages();
+        
+        const container = document.getElementById("countries-list");
 
-        // Récupérer les éléments du DOM pour l'affichage
-        const currenciesContainer = document.getElementById("currencies-list");
-        const languagesContainer = document.getElementById("languages-list");
+        countries.forEach(country => {
+            let countryDiv = document.createElement("div");
+            countryDiv.classList.add("country-card");
 
-        // Afficher les devises
-        Currency.all_currencies.forEach(([code, currency]) => {
-            let currencyDiv = document.createElement("div");
-            currencyDiv.classList.add("currency-card");
-            currencyDiv.innerHTML = `
-                <p><strong>${currency._nom}</strong> (${currency._code}) - ${currency._symbole}</p>
+            // Récupération des devises 
+            let currencies = country.currencies && country.currencies.length > 0 ?
+                country.currencies.map(currency => `${currency.name} (${currency.symbol})`).join(", ") :
+                "Aucune devise";
+
+            // Récupération des langues 
+            let languages = country.languages && country.languages.length > 0 ?
+                country.languages.map(language => `${language.name}`).join(", ") :
+                "Aucune langue";
+
+            // Récupération des informations du pays
+            let countryInfo = new Country(
+                country.alpha3Code,
+                country.translations.fr || country.name,
+                country.capital,
+                country.region,
+                country.population,
+            ).toString();
+
+            countryDiv.innerHTML = `
+                <p><strong>${country.name}</strong></p>
+                <p><span>Capital :</span> ${country.capital || "Inconnu"}</p>
+                <p><span>Région :</span> ${country.region || "Inconnue"}</p>
+                <p><span>Population :</span> ${country.population.toLocaleString() || "Inconnue"}</p>
+                <p><span>Devises :</span> ${currencies}</p>
+                <p><span>Langues :</span> ${languages}</p>
             `;
-            currenciesContainer.appendChild(currencyDiv);
+
+            container.appendChild(countryDiv);
         });
 
-        // Afficher les langues
-        Language.all_languages.forEach(([code, language]) => {
-            let languageDiv = document.createElement("div");
-            languageDiv.classList.add("language-card");
-            languageDiv.innerHTML = `
-                <p><strong>${language._nom}</strong> (${language._codeISO_2})</p>
-            `;
-            languagesContainer.appendChild(languageDiv);
-        });
-
+        console.log("Toutes les informations ont été affichées !");
     } else {
-        console.error("Les classes ou les données des pays ne sont pas définies.");
+        console.error("CurrencyManager ou LanguageManager non défini.");
     }
 });
