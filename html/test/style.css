@@ -93,7 +93,6 @@ nav ul li a:hover {
 #countries-list {
     padding: 20px;
     background-color: #ffffff;
-    min-height: 100%; /* Assure que le contenu occupe tout l'espace restant */
 }
 
 /* Footer */
