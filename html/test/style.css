@@ -115,3 +115,57 @@ footer p {
         margin: 10px 0;
     }
 }
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////// CLASS CURRENCY ///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+/* Section des devises */
+#currencies-list {
+    padding: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.currency-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 15px;
+    width: 250px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.currency-card:hover {
+    transform: scale(1.05);
+}
+
+.currency-card h3 {
+    font-size: 1.5em;
+    color: #34495e;
+    margin-bottom: 10px;
+}
+
+.currency-card p {
+    font-size: 1.1em;
+    color: #7f8c8d;
+    margin: 5px 0;
+}
+
+.currency-card .currency-code {
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+.currency-card .currency-symbol {
+    font-size: 1.5em;
+    color: #1abc9c;
+}
+
