@@ -126,9 +126,9 @@ footer p {
 /* Section des devises */
 #currencies-list {
     padding: 30px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly; /* Espace uniforme entre les cartes */
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 cartes par ligne */
+    gap: 20px; /* Espacement entre les cartes */
 }
 
 .currency-card {
@@ -136,13 +136,9 @@ footer p {
     border: 1px solid #ddd;
     border-radius: 10px;
     padding: 20px;
-    margin: 15px;
-    width: 220px; /* Taille de la carte */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s;
-    flex-basis: calc(25% - 30px); /* 4 cartes par ligne (25% de la largeur, moins la marge) */
-    box-sizing: border-box;
 }
 
 .currency-card:hover {
@@ -170,4 +166,5 @@ footer p {
     font-size: 1.5em;
     color: #1abc9c;
 }
+
 
