@@ -39,6 +39,7 @@ document.addEventListener("DOMContentLoaded", function () {
             countryDiv.classList.add("currency-card");
             countryDiv.innerHTML = `
                 <p><strong>${pays._nom}</strong></p>
+                <img src="${pays.getFlags()}">
             `;
             countriesCountainer.appendChild(countryDiv);
         });
