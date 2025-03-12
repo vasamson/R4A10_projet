@@ -1,4 +1,63 @@
-/* Style pour la section des tests */
+/* Styles globaux */
+body, html {
+    height: 100%; /* Assure que le body et html occupent toute la hauteur de la page */
+    margin: 0;
+    padding: 0;
+    font-family: 'K2D', sans-serif;
+    box-sizing: border-box;
+}
+
+/* Header */
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Container du logo */
+.logo-container h1 {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+.logo-container p {
+    margin: 0;
+    font-size: 1.2em;
+    color: #f0f0f0;
+}
+
+/* Menu de navigation */
+nav {
+    background-color: #333;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 10px 20px;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+nav ul li a:hover {
+    background-color: #575757;
+}
+
+/* Section des tests */
 #tests {
     padding: 20px;
     text-align: center;
@@ -28,4 +87,34 @@
 
 .test-buttons button:active {
     background-color: #3e8e41;
+}
+
+/* Liste des pays */
+#countries-list {
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100%; /* Assure que le contenu occupe tout l'espace restant */
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 5px 0;
+}
+
+/* Responsive: Menu de navigation pour les petits écrans */
+@media (max-width: 768px) {
+    nav ul li {
+        display: block;
+        margin: 10px 0;
+    }
 }
