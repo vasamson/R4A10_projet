@@ -90,8 +90,10 @@
             testSection.style.display = 'none'; // Masquer les tests
         }
     }
-</script>
+<script>
 
+
+<script>
 let currentIndex = 0;
 const images = document.querySelectorAll('.carousel-image');
 const totalImages = images.length;
@@ -101,12 +103,12 @@ const carouselImages = document.querySelector('.carousel-images');
 function moveCarousel() {
     if (currentIndex >= totalImages - 1) {
         currentIndex = 0;
-        // Désactive la transition pour éviter le demi-tour rapide
+        // Désactive la transition juste avant de faire le saut, puis réactive après le délai
         carouselImages.style.transition = 'none';
         carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-        // Réactive la transition après un délai pour le cycle suivant
         setTimeout(() => {
+            // Réactive la transition pour les images suivantes
             carouselImages.style.transition = 'transform 0.5s ease';
         }, 50); // Délai très court avant de réactiver la transition
     } else {
@@ -148,6 +150,7 @@ function goToPrevImage() {
         carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
 }
+<script>
 
 
 </body>
