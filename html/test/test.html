@@ -92,45 +92,62 @@
     }
 </script>
 
-<script>
-    let currentIndex = 0;
-    const images = document.querySelectorAll('.carousel-image');
-    const totalImages = images.length;
+let currentIndex = 0;
+const images = document.querySelectorAll('.carousel-image');
+const totalImages = images.length;
+const carouselImages = document.querySelector('.carousel-images');
 
-    // Fonction pour changer l'image du carousel
-    function moveCarousel() {
-        if (currentIndex >= totalImages - 1) {
-            currentIndex = 0;
-        } else {
-            currentIndex++;
-        }
+// Fonction pour changer l'image du carousel
+function moveCarousel() {
+    if (currentIndex >= totalImages - 1) {
+        currentIndex = 0;
+        // Désactive la transition pour éviter le demi-tour rapide
+        carouselImages.style.transition = 'none';
+        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
 
-        // Déplacer le carousel à la position souhaitée
-        document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+        // Réactive la transition après un délai pour le cycle suivant
+        setTimeout(() => {
+            carouselImages.style.transition = 'transform 0.5s ease';
+        }, 50); // Délai très court avant de réactiver la transition
+    } else {
+        currentIndex++;
+        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
+}
 
-    // Faire défiler toutes les 3 secondes
-    setInterval(moveCarousel, 3000);
+// Faire défiler toutes les 3 secondes
+setInterval(moveCarousel, 3000);
 
-    // Fonction pour naviguer manuellement dans le carousel
-    function goToNextImage() {
-        if (currentIndex >= totalImages - 1) {
-            currentIndex = 0;
-        } else {
-            currentIndex++;
-        }
-        document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+// Fonction pour naviguer manuellement dans le carousel
+function goToNextImage() {
+    if (currentIndex >= totalImages - 1) {
+        currentIndex = 0;
+        carouselImages.style.transition = 'none';
+        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        setTimeout(() => {
+            carouselImages.style.transition = 'transform 0.5s ease';
+        }, 50);
+    } else {
+        currentIndex++;
+        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
+}
 
-    function goToPrevImage() {
-        if (currentIndex <= 0) {
-            currentIndex = totalImages - 1;
-        } else {
-            currentIndex--;
-        }
-        document.querySelector('.carousel-images').style.transform = `translateX(-${currentIndex * 100}%)`;
+function goToPrevImage() {
+    if (currentIndex <= 0) {
+        currentIndex = totalImages - 1;
+        carouselImages.style.transition = 'none';
+        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        setTimeout(() => {
+            carouselImages.style.transition = 'transform 0.5s ease';
+        }, 50);
+    } else {
+        currentIndex--;
+        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
     }
-</script>
+}
 
 
 </body>
