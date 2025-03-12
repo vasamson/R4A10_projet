@@ -10,7 +10,7 @@ class Country {
         this._pays_voisins = pays_voisins; // LISTE D'OBJETS Country
     }
 
-    static fill_countries(countries) {
+    static fill_countries() {
         Country.all_countries.clear(); // Réinitialisation au cas où
 
         // 1. Création des objets Country et stockage dans la Map
@@ -29,13 +29,15 @@ class Country {
         countries.forEach(country => {
             let countryObj = Country.all_countries.get(country.alpha3Code);
             if (countryObj) {
-                countryObj._pays_voisins = country.borders
-                    .map(code => Country.all_countries.get(code)) // Récupère les objets Country correspondants
-                    .filter(neighbor => neighbor !== undefined); // Filtre les cas inexistants
+                countryObj._pays_voisins = (country.borders ?? [])
+                    .map(code => Country.all_countries.get(code)) // Cherche l'objet Country
+                    .filter(neighbor => neighbor !== undefined);
             }
-        });
+        });        
     }
 }
 
 Country.fill_countries();
-Country.all_countries.forEach()
+Country.all_countries.forEach((countryObj, code) => {
+    console.log(`${code} =>`, countryObj);
+});
