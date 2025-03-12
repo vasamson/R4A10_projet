@@ -30,6 +30,6 @@ class Currency {
 
 Currency.fill_currencies();
 
-Currency.all_currencies.forEach(([code, currency]) => {
+/* Currency.all_currencies.forEach(([code, currency]) => {
     console.log(currency.toString()); // test de la méthode toString() sur chaque objet (et ça fonctione :) )
-});
+}); */
