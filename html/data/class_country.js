@@ -36,15 +36,24 @@ class Country {
         });
     }
 
-    static getPopDensity(){
+    getPopDensity(){
         // retourne la densité de la population (hab / km²) du pays
         const country = countries.find(country => country.alpha3Code === this._code_alpha3);
-        return country;
+        let habSuperficie = null;
+        
+        if(country){ // au cas où
+            let pop = country.population;
+            let surface = country.area;
+
+            habSuperficie = pop / surface;
+        }
+
+        return habSuperficie.toFixed(1);
     }
 }
 
 Country.fill_countries();
 Country.all_countries.forEach((countryObj, code) => {
-    //console.table(`${code} =>`, countryObj);
-    console.log(countryObj.getPopDensity());
+    console.table(`${code} =>`, countryObj);
+    // console.log(countryObj.getPopDensity());
 });
