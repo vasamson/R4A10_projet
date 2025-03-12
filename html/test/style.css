@@ -165,3 +165,79 @@ footer p {
     font-weight: bold;
     color: #34495e;
 }
+
+
+
+/*
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////// CARROUSEL///////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+*/
+
+
+
+
+
+
+
+
+
+/* Carousel des continents */
+.carousel-container {
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.carousel-container h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Conteneur du carousel */
+.carousel {
+    overflow: hidden;
+    width: 100%;
+}
+
+/* Conteneur des images à l'intérieur du carousel */
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+/* Style des images dans le carousel */
+.carousel-image {
+    width: 100%;
+    max-width: 100%;
+    object-fit: cover; /* Ajuste l'image sans déformation */
+    margin-right: 10px;
+}
+
+/* Pour que les images prennent toute la largeur disponible */
+.carousel-images img {
+    width: 100%;
+    height: 300px; /* Hauteur des images dans le carousel */
+}
+
+/* Style pour le carousel (optionnel, pour ajouter des boutons) */
+.carousel-prev, .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.carousel-prev {
+    left: 10px;
+}
+
+.carousel-next {
+    right: 10px;
+}
