@@ -122,7 +122,6 @@ footer p {
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-
 /* Section des devises */
 #currencies-list {
     padding: 30px;
@@ -132,6 +131,7 @@ footer p {
     width: 100%; /* S'assurer que le conteneur occupe toute la largeur disponible */
     max-width: 1200px; /* Limite la largeur du conteneur */
     margin: 0 auto; /* Centre le conteneur */
+    box-sizing: border-box; /* Assure que les espacements sont pris en compte dans la largeur totale */
 }
 
 /* Carte de devise */
@@ -145,7 +145,9 @@ footer p {
     transition: transform 0.3s;
     display: flex;
     flex-direction: column;
+    justify-content: center; /* Centre le contenu de la carte */
     align-items: center;
+    height: 200px; /* Fixe une hauteur pour toutes les cartes */
 }
 
 /* Effet au survol */
@@ -179,13 +181,14 @@ footer p {
     color: #1abc9c;
 }
 
-/* Responsivité - Pour les petits écrans */
+/* Responsivité - Pour les écrans de taille moyenne */
 @media (max-width: 1024px) {
     #currencies-list {
         grid-template-columns: repeat(2, 1fr); /* 2 cartes par ligne sur les écrans moyens */
     }
 }
 
+/* Responsivité - Pour les petits écrans */
 @media (max-width: 768px) {
     #currencies-list {
         grid-template-columns: 1fr; /* 1 carte par ligne sur les petits écrans */
