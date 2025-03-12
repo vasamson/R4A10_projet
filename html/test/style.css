@@ -57,6 +57,14 @@ nav ul li a:hover {
     background-color: #575757;
 }
 
+img {
+    height: 50px;
+    width:50px;
+    border-radius: 50px;
+}
+
+
+
 /* Section des tests */
 #tests {
     padding: 20px;
