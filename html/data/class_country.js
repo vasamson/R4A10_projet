@@ -38,8 +38,14 @@ class Country {
 
     getPopDensity(){
         // retourne la densité de la population (hab / km²) du pays
-        const country = countries.find(country => country.alpha3Code === this._code_alpha3);
+        const country = countries.find(country => country.alpha3Code == this._code_alpha3);
         let habSuperficie = null;
+
+        if (!country) {
+            // Vérification si les données sont manquantes ou invalides (population ou superficie = 0)
+            console.log("Données invalides ou manquantes pour", this._code_alpha3);
+            return "Données invalides";  // ou retourne null, 0, ou une autre valeur par défaut selon ton besoin
+        }
         
         if(country){ // au cas où
             let pop = country.population;
@@ -48,12 +54,12 @@ class Country {
             habSuperficie = pop / surface;
         }
 
-        return habSuperficie.toFixed(1);
+        return `${habSuperficie.toFixed(1)}`;
     }
 }
 
 Country.fill_countries();
 Country.all_countries.forEach((countryObj, code) => {
-    console.table(`${code} =>`, countryObj);
-    // console.log(countryObj.getPopDensity());
+    // console.table(`${code} =>`, countryObj);
+    console.log(countryObj.getPopDensity());
 });
