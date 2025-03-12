@@ -56,10 +56,15 @@ class Country {
 
         return `${habSuperficie.toFixed(1)}`;
     }
+
+    getBorders(){
+        return [...this._pays_voisins]; // on retourne un clone, pour éviter de modifier ACCIDENTELLEMENT le tableau
+    }
 }
 
 Country.fill_countries();
 Country.all_countries.forEach((countryObj, code) => {
-    // console.table(`${code} =>`, countryObj);
-    console.log(countryObj.getPopDensity());
+    console.table(`${code} =>`, countryObj);
+    // console.log(countryObj.getPopDensity());
+    console.log(countryObj.getBorders());
 });

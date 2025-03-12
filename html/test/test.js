@@ -7,20 +7,22 @@ document.addEventListener("DOMContentLoaded", function () {
         // Remplir les informations sur les devises et les langues
         Currency.fill_currencies();  // Remplir la liste des devises
         Language.fill_languages();   // Remplir la liste des langues
+        Country.fill_countries();
 
         // Récupérer les éléments du DOM pour l'affichage
         const currenciesContainer = document.getElementById("currencies-list");
         const languagesContainer = document.getElementById("languages-list");
+        const countriesCountainer = document.getElementById("countries-list");
 
         // Afficher les devises
-        Currency.all_currencies.forEach(([code, currency]) => {
+/*         Currency.all_currencies.forEach(([code, currency]) => {
             let currencyDiv = document.createElement("div");
             currencyDiv.classList.add("currency-card");
             currencyDiv.innerHTML = `
                 <p><strong>${currency._nom}</strong> (${currency._code}) - ${currency._symbole}</p>
             `;
             currenciesContainer.appendChild(currencyDiv);
-        });
+        }); */
 
         // Afficher les langues
         Language.all_languages.forEach(([code, language]) => {
@@ -31,6 +33,16 @@ document.addEventListener("DOMContentLoaded", function () {
             `;
             languagesContainer.appendChild(languageDiv);
         });
+
+        Country.all_countries.forEach((pays, code) => {
+            let countryDiv = document.createElement("div");
+            countryDiv.classList.add("currency-card");
+            countryDiv.innerHTML = `
+                <p><strong>${pays._nom}</strong></p>
+            `;
+            countriesCountainer.appendChild(countryDiv); // Ajoute l'élément au DOM
+        });
+        
 
     } else {
         console.error("Les classes ou les données des pays ne sont pas définies.");

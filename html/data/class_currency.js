@@ -31,5 +31,5 @@ class Currency {
 Currency.fill_currencies();
 
 Currency.all_currencies.forEach(([code, currency]) => {
-    console.table(currency.toString()); // test de la méthode toString() sur chaque objet (et ça fonctione :) )
+    // console.table(currency.toString()); // test de la méthode toString() sur chaque objet (et ça fonctione :) )
 });

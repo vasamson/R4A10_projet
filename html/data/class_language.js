@@ -30,5 +30,5 @@ class Language{
 Language.fill_languages();
 
 Language.all_languages.forEach(([code, language]) => {
-    console.table(language.toString());
+    // console.table(language.toString());
 })
