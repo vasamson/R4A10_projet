@@ -60,11 +60,17 @@ class Country {
     getBorders(){
         return [...this._pays_voisins]; // on retourne un clone, pour éviter de modifier ACCIDENTELLEMENT le tableau
     }
+
+    getFlags(){ // ça c'est à moi
+        const country = countries.find(country => country.alpha3Code == this._code_alpha3);
+
+        return country.flags.png || country.flag;
+    }
 }
 
 Country.fill_countries();
 Country.all_countries.forEach((countryObj, code) => {
     console.table(`${code} =>`, countryObj);
     // console.log(countryObj.getPopDensity());
-    console.log(countryObj.getBorders());
+    console.log(countryObj.getFlags());
 });

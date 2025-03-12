@@ -40,7 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
             countryDiv.innerHTML = `
                 <p><strong>${pays._nom}</strong></p>
             `;
-            countriesCountainer.appendChild(countryDiv); // Ajoute l'élément au DOM
+            countriesCountainer.appendChild(countryDiv);
         });
         
 
