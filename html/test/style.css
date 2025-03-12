@@ -61,7 +61,7 @@ nav ul li a:hover {
 #countries-list {
     padding: 20px;
     background-color: #f4f4f4;
-    min-height: 100%; /* Assure que le contenu occupe tout l'espace restant */
+    min-height: calc(100% - 160px); /* Réduit la hauteur pour éviter de laisser trop de place pour le footer */
 }
 
 /* Footer */
@@ -70,13 +70,28 @@ footer {
     color: white;
     text-align: center;
     padding: 15px;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: 20px; /* Ajout d'un espace entre la liste des pays et le footer */
 }
 
 footer p {
     margin: 5px 0;
+}
+
+/* Pour s'assurer que le footer ne génère pas d'espace sous la page */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#countries-list {
+    flex: 1; /* Cette règle permet au contenu principal de prendre toute la place restante */
 }
 
 /* Responsive: Menu de navigation pour les petits écrans */
