@@ -250,49 +250,4 @@ footer p {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* Liste des pays */
-#countries-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
-    gap: 20px;
-    padding: 30px;
-    background-color: #fff;
-    margin: 20px auto;
-    width: 90%;
-    border-radius: 10px;
-    position: relative;
-    z-index: 1; /* Pour éviter que les cartes au-dessus du grid ne soient masquées */
-}
-
-/* Style de chaque carte des pays */
-.currency-card {
-    background-color: #ecf0f1;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.3s;
-    z-index: 1; /* Assure que la carte est sous les autres au départ */
-}
-
-/* Effet d'agrandissement de la carte des pays au survol */
-.currency-card:hover {
-    transform: scale(1.5);  /* Agrandissement de 50% */
-    z-index: 2;  /* Place la carte en avant lorsqu'elle est agrandie */
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2); /* Ombre plus marquée */
-}
-
-/* Effet pour garder la carte bien centrée (dépendant du positionnement de la grille) */
-#countries-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    padding: 30px;
-    background-color: #fff;
-    margin: 20px auto;
-    width: 90%;
-    border-radius: 10px;
-    position: relative;
-}
-
 
