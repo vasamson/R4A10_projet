@@ -3,31 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Carte interactive</title>
+  <title>Carte Interactive</title>
   <style>
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f0f0f0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      position: relative;
     }
 
+    /* Petite carte en haut à gauche */
     .small-card {
+      position: absolute;
+      top: 20px;
+      left: 20px;
       width: 200px;
-      height: 150px;
-      background-image: url('https://via.placeholder.com/200x150');
-      background-size: cover;
-      border-radius: 10px;
+      padding: 15px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.2s;
     }
 
-    /* Style pour l'effet de fond grisé */
+    .small-card:hover {
+      transform: scale(1.05);
+    }
+
+    /* Fond grisé */
     .overlay {
       position: fixed;
       top: 0;
@@ -39,52 +42,66 @@
       z-index: 10;
     }
 
-    /* Style pour la carte agrandie */
+    /* Carte agrandie */
     .large-card {
       position: fixed;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 80%;
-      max-width: 800px;
-      height: auto;
-      background-size: contain;
-      background-repeat: no-repeat;
+      max-width: 500px;
+      padding: 20px;
+      background-color: white;
       border-radius: 10px;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
       z-index: 20;
-    }
-
-    /* Cacher la carte agrandie au début */
-    .large-card.hidden {
       display: none;
     }
 
-    .overlay.hidden {
-      display: none;
+    /* Bouton de fermeture */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 20px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <!-- Petite carte -->
-  <div class="small-card" onclick="showLargeCard()"></div>
+
+  <!-- Petite carte en haut à gauche -->
+  <div class="small-card" onclick="showLargeCard()">
+    <h3>Petite Carte</h3>
+    <p>Cliquez pour voir plus d'infos</p>
+  </div>
 
   <!-- Fond grisé -->
-  <div class="overlay hidden" onclick="hideLargeCard()"></div>
+  <div class="overlay" id="overlay" onclick="hideLargeCard()"></div>
 
   <!-- Carte agrandie -->
-  <div class="large-card hidden" id="largeCard" style="background-image: url('https://via.placeholder.com/800x600');"></div>
+  <div class="large-card" id="largeCard">
+    <span class="close-btn" onclick="hideLargeCard()">&times;</span>
+    <h2>Grande Carte</h2>
+    <p>Voici plus d'informations détaillées sur cette carte.</p>
+    <ul>
+      <li>Info 1 : Détails intéressants</li>
+      <li>Info 2 : Autres données</li>
+      <li>Info 3 : Explication complémentaire</li>
+    </ul>
+  </div>
 
   <script>
     function showLargeCard() {
-      document.getElementById('largeCard').classList.remove('hidden');
-      document.querySelector('.overlay').classList.remove('hidden');
+      document.getElementById('largeCard').style.display = 'block';
+      document.getElementById('overlay').style.display = 'block';
     }
 
     function hideLargeCard() {
-      document.getElementById('largeCard').classList.add('hidden');
-      document.querySelector('.overlay').classList.add('hidden');
+      document.getElementById('largeCard').style.display = 'none';
+      document.getElementById('overlay').style.display = 'none';
     }
   </script>
+
 </body>
 </html>
