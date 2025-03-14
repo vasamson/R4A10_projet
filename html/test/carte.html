@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carte interactive</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      position: relative;
+    }
+
+    .small-card {
+      width: 200px;
+      height: 150px;
+      background-image: url('https://via.placeholder.com/200x150');
+      background-size: cover;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Style pour l'effet de fond grisé */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      display: none;
+      z-index: 10;
+    }
+
+    /* Style pour la carte agrandie */
+    .large-card {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      max-width: 800px;
+      height: auto;
+      background-size: contain;
+      background-repeat: no-repeat;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      z-index: 20;
+    }
+
+    /* Cacher la carte agrandie au début */
+    .large-card.hidden {
+      display: none;
+    }
+
+    .overlay.hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Petite carte -->
+  <div class="small-card" onclick="showLargeCard()"></div>
+
+  <!-- Fond grisé -->
+  <div class="overlay hidden" onclick="hideLargeCard()"></div>
+
+  <!-- Carte agrandie -->
+  <div class="large-card hidden" id="largeCard" style="background-image: url('https://via.placeholder.com/800x600');"></div>
+
+  <script>
+    function showLargeCard() {
+      document.getElementById('largeCard').classList.remove('hidden');
+      document.querySelector('.overlay').classList.remove('hidden');
+    }
+
+    function hideLargeCard() {
+      document.getElementById('largeCard').classList.add('hidden');
+      document.querySelector('.overlay').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>
