@@ -61,10 +61,29 @@ class Country {
         return [...this._pays_voisins]; // on retourne un clone, pour éviter de modifier ACCIDENTELLEMENT le tableau
     }
 
-    getFlags(){ // ça c'est à moi
+    getFlags(){ // fonction rajoutée (hors-sujet)
         const country = countries.find(country => country.alpha3Code == this._code_alpha3);
 
         return country.flags.png || country.flag;
+    }
+
+    getCurrencies(){
+        const country = countries.find(country => country.alpha3Code == this._code_alpha3);
+        const currencyCodes = Currency.all_currencies.map((_, index) => index);
+
+
+        if(!country || !country.currencies) return [];
+
+        country.currencies.forEach(currency => {
+            if (currencyCodes.includes(currency.code)) {
+                // console.log(currency.code);
+            }
+        });        
+
+/*         let countryCurrencies = country.currencies
+        .map(currency => Currency.all_currencies.find(c => c._code === currency.code))
+        .filter(currencyObj => currencyObj !== undefined); */
+
     }
 }
 
@@ -73,4 +92,5 @@ Country.all_countries.forEach((countryObj, code) => {
     // console.table(`${code} =>`, countryObj);
     // console.log(countryObj.getPopDensity());
     // console.log(countryObj.getFlags());
+    console.table(countryObj.getCurrencies());
 });
