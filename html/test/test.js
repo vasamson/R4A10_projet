@@ -1,5 +1,3 @@
-// Assurez-vous que les classes Currency et Language sont bien définies dans leurs fichiers respectifs
-// et que les données de 'countries' sont disponibles.
 document.addEventListener("DOMContentLoaded", function () {
     // S'assurer que les classes et données sont disponibles
     if (typeof Currency !== 'undefined' && typeof Language !== 'undefined' && typeof countries !== 'undefined') {
