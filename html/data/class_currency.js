@@ -11,26 +11,28 @@ class Currency {
         return `${this._code} , ${this._nom} , ${this._symbole}`;
     }
 
-    static fill_currencies() {
-        // la constante "countries" est accessible
 
-        const uniqueCurrencies = new Map();
+    static fill_currencies() {
+        const uniqueCurrencies = [];
 
         countries.forEach(country => {
             country.currencies?.forEach(currency => {
-                if (!uniqueCurrencies.has(currency.code)) {
-                    uniqueCurrencies.set(currency.code, new Currency(currency.code, currency.name, currency.symbol));
+                // Vérification si la devise existe déjà dans le tableau
+                if (!uniqueCurrencies.some(c => c._code === currency.code)) {
+                    // Ajout de la devise dans le tableau
+                    uniqueCurrencies.push(new Currency(currency.code, currency.name, currency.symbol));
                 }
             });
         });
 
-        this.all_currencies = Array.from(uniqueCurrencies.entries());
+        // Stockage du tableau dans all_currencies
+        this.all_currencies = uniqueCurrencies;
     }
 }
 
 Currency.fill_currencies();
-console.table(Currency.all_currencies);
 
-Currency.all_currencies.forEach(([code, currency]) => {
+Currency.all_currencies.forEach(currency => {
+    // console.log(currency._code);
     // console.table(currency.toString()); // test de la méthode toString() sur chaque objet (et ça fonctione :) )
 });
