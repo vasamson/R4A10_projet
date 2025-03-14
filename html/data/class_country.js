@@ -100,11 +100,6 @@ class Country {
 
         return tabLanguages;
     }
-
-    afficheLangues(){
-        
-    }
-    
 }
 
 Country.fill_countries();
