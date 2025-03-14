@@ -70,7 +70,7 @@ class Country {
 
 Country.fill_countries();
 Country.all_countries.forEach((countryObj, code) => {
-    console.table(`${code} =>`, countryObj);
+    // console.table(`${code} =>`, countryObj);
     // console.log(countryObj.getPopDensity());
-    console.log(countryObj.getFlags());
+    // console.log(countryObj.getFlags());
 });
