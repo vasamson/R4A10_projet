@@ -12,23 +12,21 @@ class Language{
 
     static fill_languages(){
 
-        const uniqueLanguages = new Map();
+        const uniqueLanguages = [];
 
         countries.forEach(country => {
             country.languages?.forEach(language => {
-                if(!uniqueLanguages.has(language.iso639_2)){
-                    uniqueLanguages.set(language.iso639_2, new Language(language.iso639_2,language.name));
+                if(!uniqueLanguages.some(c => c._codeISO_2 === language.iso639_2)){
+                    uniqueLanguages.push(new Language(language.iso639_2, language.name));
                 }
             });
         });
 
-        this.all_languages = Array.from(uniqueLanguages.entries());
+        this.all_languages = uniqueLanguages;
 
     }
 }
 
 Language.fill_languages();
 
-Language.all_languages.forEach(([code, language]) => {
-    // console.table(language.toString());
-})
+console.table(Language.all_languages);

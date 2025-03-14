@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }); */
 
         // Afficher les langues
-        Language.all_languages.forEach(([code, language]) => {
+        Language.all_languages.forEach(language => {
             let languageDiv = document.createElement("div");
             languageDiv.classList.add("language-card");
             languageDiv.innerHTML = `

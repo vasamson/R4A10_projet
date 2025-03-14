@@ -85,6 +85,23 @@ class Country {
     }
 
     getLanguages(){
+        var tabLanguages = [];
+        const country = countries.find(country => country.alpha3Code == this._code_alpha3);
+
+        if(!country || !country.languages) return [];
+
+        country.languages.forEach(language =>{
+            var existe = Language.all_languages.find(c => c._codeISO_2 === language.iso639_2);
+
+            if(existe){
+                tabLanguages.push(existe);
+            }
+        })
+
+        return tabLanguages;
+    }
+
+    afficheLangues(){
         
     }
     
@@ -96,7 +113,10 @@ Country.all_countries.forEach((countryObj, code) => {
     // console.log(countryObj.getPopDensity());
     // console.log(countryObj.getFlags());
     // console.log(countryObj.getCurrencies());
-    countryObj.getCurrencies().forEach(currency => {
+/*     countryObj.getCurrencies().forEach(currency => {
         console.log(currency.toString());
-    });
+    }); */
+/*     countryObj.getLanguages().forEach(language => {
+        console.log(language.toString());
+    }) */
 });
