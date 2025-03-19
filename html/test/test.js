@@ -28,9 +28,10 @@ function outsideTheContinent(){
 function moreNeighbors(){
     tabMoreNeighbors = [];
     var maxVoisins = 0;
+    var nbVoisins = 0;
 
     Country.all_countries.forEach((countryObj, code) => {
-        var nbVoisins = countryObj._pays_voisins.length;
+        nbVoisins = countryObj._pays_voisins.length;
 
         if(nbVoisins > maxVoisins){
             maxVoisins = nbVoisins;
@@ -61,6 +62,8 @@ console.log(moreNeighbors());
 
 function neighborless(){
     tabNeighborless = [];
+    var maxLangues = 0;
+    var nbLangues = 0;
 
     Country.all_countries.forEach((countryObj, code) => {
         if(countryObj._pays_voisins.length === 0){
@@ -72,3 +75,21 @@ function neighborless(){
 }
 
 console.log(neighborless());
+
+/* QUESTION 4 : moreLanguages()
+*
+* La fonction parcourt chaque pays de Country.all_countries
+* On récupère d'abord le plus grand nombre de langues parlées.
+* Pour chaque pays ayant ce nombre de langues, on stocke le pays, et on affiche les langues parlées.
+*
+*/
+
+function moreLanguages(){
+    tabMoreLangues = [];
+
+    Country.all_countries.forEach((countryObj, code) => {
+        console.log(CountryObj.getLanguages().length);
+    });
+}
+
+moreLanguages();
