@@ -87,7 +87,7 @@ console.log(neighborless());
 function moreLanguages(){
     tabMoreLangues = [];
 
-    Country.all_countries.forEach((countryObj, code) => {
+    Country.all_countries.forEach((CountryObj, code) => {
         console.log(CountryObj.getLanguages().length);
     });
 }
