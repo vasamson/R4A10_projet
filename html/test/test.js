@@ -51,7 +51,7 @@ function moreNeighbors(){
     return tabMoreNeighbors;
 }
 
-console.log(moreNeighbors());
+// console.log(moreNeighbors());
 
 /* QUESTION 3 : neighborless
 *
@@ -62,8 +62,6 @@ console.log(moreNeighbors());
 
 function neighborless(){
     tabNeighborless = [];
-    var maxLangues = 0;
-    var nbLangues = 0;
 
     Country.all_countries.forEach((countryObj, code) => {
         if(countryObj._pays_voisins.length === 0){
@@ -74,7 +72,7 @@ function neighborless(){
     return tabNeighborless;
 }
 
-console.log(neighborless());
+// console.log(neighborless());
 
 /* QUESTION 4 : moreLanguages()
 *
@@ -86,10 +84,81 @@ console.log(neighborless());
 
 function moreLanguages(){
     tabMoreLangues = [];
+    var maxLangues = 0;
+    var nbLangues = 0;
 
     Country.all_countries.forEach((CountryObj, code) => {
-        console.log(CountryObj.getLanguages().length);
+        nbLangues = CountryObj.getLanguages().length;
+
+        if(nbLangues > maxLangues){
+            maxLangues = nbLangues;
+        }
     });
+
+    Country.all_countries.forEach((CountryObj, code) => {
+        nbLangues = CountryObj.getLanguages().length;
+
+        if(nbLangues === maxLangues){
+            tabMoreLangues.push(CountryObj);
+            console.table(CountryObj.getLanguages());
+/*             CountryObj.getLanguages().forEach(language => {
+                console.table(language.toString());
+            }) */
+        }
+    })
+
+    return tabMoreLangues;
 }
 
-moreLanguages();
+// console.table(moreLanguages());
+
+/* QUESTION 5 : withCommonLanguage()
+*
+* La fonction parcourt chaque pays de Country.all_countries
+* Pour chaque voisin, si getLanguages() contient au moins une langue commune
+*
+*/
+
+function withCommonLanguage() {
+    let tabCommonLanguage = new Set();
+
+    Country.all_countries.forEach((CountryObj) => {
+        let tabLanguages = CountryObj.getLanguages();
+
+        CountryObj._pays_voisins.forEach((pays) => {
+            let tabLanguagesVoisin = pays.getLanguages();
+
+            if (tabLanguages.some(value => tabLanguagesVoisin.includes(value))) {
+                tabCommonLanguage.add(CountryObj); // Utilisation d'un Set
+            }
+        });
+    });
+
+    return Array.from(tabCommonLanguage); // Convertir le Set en tableau pour l'affichage
+}
+
+// console.table(withCommonLanguage());
+
+
+/* QUESTION 6 : withoutCommonCurrency()
+*
+* La fonction parcourt chaque pays de Country.all_countries
+* Pour chaque voisin, si getCurrency() ne contient aucune monnaie commune...
+*
+*/
+
+function withoutCommonCurrency(){
+    let tabNotCommonCurrency = [];
+
+    Country.all_countries.forEach((CountryObj) => {
+        let tabMonnaies = CountryObj.getCurrencies();
+
+        CountryObj._pays_voisins.forEach((pays) => {
+            let tabMonnaiesVoisins = pays.getCurrencies();
+
+            if(tabMonnaies.some(value => tabMonnaiesVoisins.includes(value))){
+                tabNotCommonCurrency.push(CountryObj);
+            }
+        })
+    })
+}
