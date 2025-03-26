@@ -21,22 +21,8 @@
                 </tbody>
             </table>
         </main>
-        <script src="../html/data/countries.js"></script>
-        <script src="../html/data/class_country.js"></script>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const tableBody = document.getElementById("countries-list");
-                
-                Country.all_countries.forEach(countryObj => {
-                    const row = document.createElement("tr");
-                    
-                    row.innerHTML = `
-                        <td>${countryObj._nom}</td>
-                    `;
-                    
-                    tableBody.appendChild(row);
-                });
-            });
-        </script>
+        <script src="../data/countries.js"></script>
+        <script src="../data/class_country.js"></script>
+        <script src="script_v1.js"></script>
     </body>
 </html>
