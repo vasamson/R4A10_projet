@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
         row.innerHTML = `<td>${countryObj._nom}</td>`;
         row.innerHTML += `<td>${countryObj._population}</td>`;
         // row.innerHTML += `<td>${countryObj._surface}</td>`;
-        row.innerHTML += `<td>${countryObj.getPopDensity()}</td>`;
+        // row.innerHTML += `<td>${countryObj.getPopDensity()}</td>`;
         row.innerHTML += `<td>${countryObj._continent}</td>`;
         // row.innerHTML += `<td>${countryObj._surface}</td>`;
         // row.innerHTML += `<td>${countryObj._drapeau}</td>`;
