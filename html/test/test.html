@@ -22,15 +22,55 @@
 <section id="tests">
     <h2>Tests à effectuer</h2>
     <div class="test-buttons">
-        <button onclick="outsideTheContinent()">Q1 - Pays avec voisins sur différents continents</button>
-        <button onclick="moreNeighbors()">Q2 - Pays avec le plus de voisins</button>
-        <button onclick="neighborless()">Q3 - Pays sans voisins</button>
-        <button onclick="moreLanguages()">Q4 - Pays avec le plus de langues</button>
-        <button onclick="withCommonLanguage()">Q5 - Pays avec voisins parlant une langue commune</button>
-        <button onclick="withoutCommonCurrency()">Q6 - Pays sans voisins avec une monnaie commune</button>
-        <button onclick="sortingDecreasingDensity()">Q7 - Pays triés par densité de population décroissante</button>
-        <button onclick="moreTopLevelDomains()">Q8 - Pays avec plusieurs Top Level Domains</button>
+    <div class="test-item" onclick="outsideTheContinent()">
+        <img src="images/continents.png" alt="Continents">
+        <span>Q1 - Pays avec voisins sur différents continents</span>
+        <p class="tooltip">Affiche les pays ayant des voisins situés sur un autre continent.</p>
     </div>
+
+    <div class="test-item" onclick="moreNeighbors()">
+        <img src="images/neighbors.png" alt="Neighbors">
+        <span>Q2 - Pays avec le plus de voisins</span>
+        <p class="tooltip">Affiche les pays avec le plus grand nombre de pays frontaliers.</p>
+    </div>
+
+    <div class="test-item" onclick="neighborless()">
+        <img src="images/island.png" alt="No Neighbors">
+        <span>Q3 - Pays sans voisins</span>
+        <p class="tooltip">Montre les pays n'ayant aucune frontière terrestre avec d'autres pays.</p>
+    </div>
+
+    <div class="test-item" onclick="moreLanguages()">
+        <img src="images/languages.png" alt="Languages">
+        <span>Q4 - Pays avec le plus de langues</span>
+        <p class="tooltip">Affiche les pays avec le plus grand nombre de langues officielles/parlées.</p>
+    </div>
+
+    <div class="test-item" onclick="withCommonLanguage()">
+        <img src="images/language-link.png" alt="Common Language">
+        <span>Q5 - Pays avec voisins parlant une langue commune</span>
+        <p class="tooltip">Liste les pays ayant au moins un voisin partageant une langue commune.</p>
+    </div>
+
+    <div class="test-item" onclick="withoutCommonCurrency()">
+        <img src="images/currency.png" alt="Different Currency">
+        <span>Q6 - Pays sans voisins avec une monnaie commune</span>
+        <p class="tooltip">Affiche les pays dont aucun voisin n'utilise la même monnaie.</p>
+    </div>
+
+    <div class="test-item" onclick="sortingDecreasingDensity()">
+        <img src="images/density.png" alt="Population Density">
+        <span>Q7 - Pays triés par densité de population décroissante</span>
+        <p class="tooltip">Trie et affiche les pays du plus densément peuplé au moins dense.</p>
+    </div>
+
+    <div class="test-item" onclick="moreTopLevelDomains()">
+        <img src="images/domain.png" alt="TLDs">
+        <span>Q8 - Pays avec plusieurs Top Level Domains</span>
+        <p class="tooltip">Affiche les pays disposant de plusieurs extensions de domaine (.fr, .gp, etc).</p>
+    </div>
+</div>
+
 </section>
     
     
