@@ -157,10 +157,14 @@ function withoutCommonCurrency(){
             let tabMonnaiesVoisins = pays.getCurrencies();
 
             if(tabMonnaies.some(value => tabMonnaiesVoisins.includes(value))){
-                tabNotCommonCurrency.push(CountryObj);
+                if(!tabNotCommonCurrency.includes(CountryObj)){
+                    tabNotCommonCurrency.push(CountryObj);
+                }
             }
         })
     })
+
+    return tabNotCommonCurrency;
 }
 
 /* QUESTION 7 : sortingDecreasingDensity()
@@ -174,14 +178,20 @@ function sortingDecreasingDensity(){
     let tabOrdonne = [];
 
     Country.all_countries.forEach((CountryObj) => {
-        if(isNaN(CountryObj.getPopDensity())){
-            tabOrdonne.push(-1);
-        } else {
-            tabOrdonne.push(CountryObj.getPopDensity());
-        }
+        tabOrdonne.push(CountryObj);
     })
 
-    tabOrdonne.sort((a,b) => b - a);
+    tabOrdonne.sort((a,b) => {
+        if(isNaN(a.getPopDensity()) && isNaN(b.getPopDensity())){
+            return 0;
+        } else if (isNaN(a.getPopDensity())){
+            return b.getPopDensity();
+        } else if (isNaN(b.getPopDensity())){
+            return a.getPopDensity();
+        } else {
+            return b.getPopDensity() - a.getPopDensity();
+        }
+    });
 
     return tabOrdonne;
 }
