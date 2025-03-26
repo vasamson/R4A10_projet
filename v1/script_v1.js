@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
         row.innerHTML = `<td>${countryObj._nom}</td>`;
         row.innerHTML += `<td>${countryObj._population}</td>`;
-        row.innerHTML += `<td>${countryObj.getSruface()}</td>`;
+        row.innerHTML += `<td>${countryObj.getSurface()}</td>`;
         row.innerHTML += `<td>${countryObj.getPopDensity()}</td>`;
         row.innerHTML += `<td>${countryObj._continent}</td>`;
         row.innerHTML += `<td><img src="${countryObj.getFlags()}" alt="Drapeau de ${countryObj._nom}" style="width: 50px; height: auto;"></td>`;
