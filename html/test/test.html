@@ -18,15 +18,8 @@
     </div>
 </header>
 
-<!-- Menu de navigation sous le header -->
-<nav>
-    <ul>
-        <li><a href="javascript:void(0);" onclick="toggleTestSection()">Test</a></li> <!-- Bouton Test -->
-    </ul>
-</nav>
 
-<!-- Section des tests (cachée au départ) -->
-<section id="tests" style="display: none;">
+<section id="tests">
     <h2>Tests à effectuer</h2>
     <div class="test-buttons">
         <button onclick="outsideTheContinent()">Q1 - Pays avec voisins sur différents continents</button>
@@ -40,22 +33,6 @@
     </div>
 </section>
     
-<!-- Carousel des continents -->
-<section id="continent-carousel" class="carousel-container">
-    <h2>Explorez les Continents</h2>
-    <div class="carousel">
-       
-
-        <div class="carousel-images">
-            <img src="images/usa.jpg" alt="Afrique" class="carousel-image">
-            <img src="images/amerique.jpg" alt="Asie" class="carousel-image">
-            <img src="images/océanie.jpg" alt="Europe" class="carousel-image">
-            <img src="images/afrique.jpg" alt="Amérique" class="carousel-image">
-            <img src="images/europe.png" alt="Océanie" class="carousel-image">
-            <img src="images/asie.jpg" alt="Océanie" class="carousel-image">
-        </div>
-    </div>
-</section>
     
 <!-- Liste des pays -->
 <div id="countries-list"></div>
@@ -78,17 +55,6 @@
 <script src="affichage.js"></script>
 <script src="test.js"></script>
 
-<script>
-    // Fonction pour afficher/masquer la section des tests
-    function toggleTestSection() {
-        const testSection = document.getElementById('tests');
-        if (testSection.style.display === 'none' || testSection.style.display === '') {
-            testSection.style.display = 'block'; // Afficher les tests
-        } else {
-            testSection.style.display = 'none'; // Masquer les tests
-        }
-    }
-</script>
 
 
 <script>
