@@ -162,3 +162,28 @@ function withoutCommonCurrency(){
         })
     })
 }
+
+/* QUESTION 7 : sortingDecreasingDensity()
+*
+* La fonction parcourt chaque pays de Country.all_countries
+* Et renvoie le tableau dans l'ordre décroissant par rapport à la densité de population
+*
+*/
+
+function sortingDecreasingDensity(){
+    let tabOrdonne = [];
+
+    Country.all_countries.forEach((CountryObj) => {
+        if(isNaN(CountryObj.getPopDensity())){
+            tabOrdonne.push(-1);
+        } else {
+            tabOrdonne.push(CountryObj.getPopDensity());
+        }
+    })
+
+    tabOrdonne.sort((a,b) => b - a);
+
+    return tabOrdonne;
+}
+
+// console.table(sortingDecreasingDensity());

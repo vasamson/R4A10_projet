@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Informations sur les Pays</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Lien pour importer la police K2D -->
     <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -18,80 +17,82 @@
     </div>
 </header>
 
-
+<!-- Section des tests -->
 <section id="tests">
     <h2>Tests à effectuer</h2>
+
+    <!-- Barre de recherche -->
+    <input type="text" id="searchInput" placeholder="Rechercher un test..." onkeyup="filterTests()" />
+
+    <!-- Liste des tests -->
     <div class="test-buttons">
-    <div class="test-item" onclick="outsideTheContinent()">
-        <div class="icon-with-tooltip">
-            <img src="images/continents.png" alt="Continents">
-            <div class="tooltip">Pays ayant des voisins sur un autre continent.</div>
+
+        <div class="test-item" onclick="outsideTheContinent()">
+            <button>Pays avec voisins sur différents continents</button>
+            <div class="tooltip-container">
+                <img src="img/continent.png" alt="Info" class="tooltip-icon">
+                <span class="tooltip-text">Affiche les pays ayant des voisins sur d'autres continents</span>
+            </div>
         </div>
-        <span>Pays avec voisins sur différents continents</span>
-    </div>
 
-    <div class="test-item" onclick="moreNeighbors()">
-        <div class="icon-with-tooltip">
-            <img src="images/neighbors.png" alt="Neighbors">
-            <div class="tooltip">Pays avec le plus grand nombre de voisins.</div>
+        <div class="test-item" onclick="moreNeighbors()">
+            <button>Pays avec le plus de voisins</button>
+            <div class="tooltip-container">
+                <img src="img/neighbor.png" alt="Info" class="tooltip-icon">
+                <span class="tooltip-text">Affiche le pays qui a le plus de frontières avec d'autres</span>
+            </div>
         </div>
-        <span>Pays avec le plus de voisins</span>
-    </div>
 
-    <div class="test-item" onclick="neighborless()">
-        <div class="icon-with-tooltip">
-            <img src="images/island.png" alt="No Neighbors">
-            <div class="tooltip">Pays sans frontières terrestres (îles par exemple).</div>
+        <div class="test-item" onclick="neighborless()">
+            <button>Pays sans voisins</button>
+            <div class="tooltip-container">
+                <img src="img/alone.png" alt="Info" class="tooltip-icon">
+                <span class="tooltip-text">Montre les pays qui n'ont aucun voisin terrestre</span>
+            </div>
         </div>
-        <span>Pays sans voisins</span>
-    </div>
 
-    <div class="test-item" onclick="moreLanguages()">
-        <div class="icon-with-tooltip">
-            <img src="images/languages.png" alt="Languages">
-            <div class="tooltip">Pays avec le plus de langues parlées.</div>
+        <div class="test-item" onclick="moreLanguages()">
+            <button>Pays avec le plus de langues</button>
+            <div class="tooltip-container">
+                <img src="img/language.png" alt="Info" class="tooltip-icon">
+                <span class="tooltip-text">Affiche les pays où l'on parle le plus de langues différentes</span>
+            </div>
         </div>
-        <span>Pays avec le plus de langues</span>
-    </div>
 
-    <div class="test-item" onclick="withCommonLanguage()">
-        <div class="icon-with-tooltip">
-            <img src="images/language-link.png" alt="Common Language">
-            <div class="tooltip">Pays partageant une langue avec au moins un voisin.</div>
+        <div class="test-item" onclick="withCommonLanguage()">
+            <button>Pays avec voisins parlant une langue commune</button>
+            <div class="tooltip-container">
+                <img src="img/shared-language.png" alt="Info" class="tooltip-icon">
+                <span class="tooltip-text">Pays partageant une langue avec leurs voisins</span>
+            </div>
         </div>
-        <span>Pays avec voisins parlant une langue commune</span>
-    </div>
 
-    <div class="test-item" onclick="withoutCommonCurrency()">
-        <div class="icon-with-tooltip">
-            <img src="images/currency.png" alt="Currency">
-            <div class="tooltip">Pays dont aucun voisin n'utilise la même monnaie.</div>
+        <div class="test-item" onclick="withoutCommonCurrency()">
+            <button>Pays sans voisins avec une monnaie commune</button>
+            <div class="tooltip-container">
+                <img src="img/currency.png" alt="Info" class="tooltip-icon">
+                <span class="tooltip-text">Pays qui n'ont pas la même monnaie que leurs voisins</span>
+            </div>
         </div>
-        <span>Pays sans voisins avec une monnaie commune</span>
-    </div>
 
-    <div class="test-item" onclick="sortingDecreasingDensity()">
-        <div class="icon-with-tooltip">
-            <img src="images/density.png" alt="Density">
-            <div class="tooltip">Classement des pays par densité de population décroissante.</div>
+        <div class="test-item" onclick="sortingDecreasingDensity()">
+            <button>Pays triés par densité de population décroissante</button>
+            <div class="tooltip-container">
+                <img src="img/density.png" alt="Info" class="tooltip-icon">
+                <span class="tooltip-text">Classement des pays selon la densité de population</span>
+            </div>
         </div>
-        <span>Pays triés par densité de population décroissante</span>
-    </div>
 
-    <div class="test-item" onclick="moreTopLevelDomains()">
-        <div class="icon-with-tooltip">
-            <img src="images/domain.png" alt="TLDs">
-            <div class="tooltip">Pays ayant plusieurs extensions de domaine (.fr, .gp, ...).</div>
+        <div class="test-item" onclick="moreTopLevelDomains()">
+            <button>Pays avec plusieurs Top Level Domains</button>
+            <div class="tooltip-container">
+                <img src="img/domain.png" alt="Info" class="tooltip-icon">
+                <span class="tooltip-text">Pays ayant plusieurs extensions internet (.fr, .tf...)</span>
+            </div>
         </div>
-        <span>Pays avec plusieurs Top Level Domains</span>
+
     </div>
-</div>
-
-</div>
-
 </section>
-    
-
 
 <!-- Footer -->
 <footer>
@@ -109,67 +110,22 @@
 <script src="affichage.js"></script>
 <script src="test.js"></script>
 
-
-
+<!-- Filtrage des tests -->
 <script>
-let currentIndex = 0;
-const images = document.querySelectorAll('.carousel-image');
-const totalImages = images.length;
-const carouselImages = document.querySelector('.carousel-images');
+function filterTests() {
+    const input = document.getElementById('searchInput').value.toLowerCase();
+    const testItems = document.querySelectorAll('.test-item');
 
-// Fonction pour changer l'image du carousel
-function moveCarousel() {
-    if (currentIndex >= totalImages - 1) {
-        currentIndex = 0;
-        // Désactive la transition juste avant de faire le saut, puis réactive après le délai
-        carouselImages.style.transition = 'none';
-        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        setTimeout(() => {
-            // Réactive la transition pour les images suivantes
-            carouselImages.style.transition = 'transform 0.5s ease';
-        }, 50); // Délai très court avant de réactiver la transition
-    } else {
-        currentIndex++;
-        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-}
-
-// Faire défiler toutes les 3 secondes
-setInterval(moveCarousel, 3000);
-
-// Fonction pour naviguer manuellement dans le carousel
-function goToNextImage() {
-    if (currentIndex >= totalImages - 1) {
-        currentIndex = 0;
-        carouselImages.style.transition = 'none';
-        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        setTimeout(() => {
-            carouselImages.style.transition = 'transform 0.5s ease';
-        }, 50);
-    } else {
-        currentIndex++;
-        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
-}
-
-function goToPrevImage() {
-    if (currentIndex <= 0) {
-        currentIndex = totalImages - 1;
-        carouselImages.style.transition = 'none';
-        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-
-        setTimeout(() => {
-            carouselImages.style.transition = 'transform 0.5s ease';
-        }, 50);
-    } else {
-        currentIndex--;
-        carouselImages.style.transform = `translateX(-${currentIndex * 100}%)`;
-    }
+    testItems.forEach(item => {
+        const text = item.innerText.toLowerCase();
+        if (text.includes(input)) {
+            item.style.display = 'flex';
+        } else {
+            item.style.display = 'none';
+        }
+    });
 }
 </script>
-
 
 </body>
 </html>
