@@ -204,12 +204,11 @@ header p {
     cursor: help;
 }
 
-/* Affichage du tooltip au survol */
-.tooltip-text {
-    position: absolute;
-    top: 50%;
-    left: 110%;
-    transform: translateY(-50%);
+/* Tooltip stylé */
+.tooltip {
+    position: fixed;
+    top: 0;
+    left: 0;
     background-color: #357ABD;
     color: #fff;
     padding: 0.6rem 1rem;
@@ -218,12 +217,15 @@ header p {
     white-space: nowrap;
     display: none;
     box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    z-index: 100;
+    z-index: 1000;
+    pointer-events: none;
 }
 
-.tooltip-container:hover .tooltip-text {
+/* Affichage du tooltip */
+.icon-with-tooltip:hover .tooltip {
     display: block;
 }
+
 
 /* Responsive tooltip sur petit écran */
 @media (max-width: 600px) {
