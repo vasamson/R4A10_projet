@@ -175,22 +175,17 @@ function withoutCommonCurrency(){
 */
 
 function sortingDecreasingDensity(){
-    let tabOrdonne = [];
+    let tabOrdonne = [...Country.all_countries]; // Copie du tableau
 
-    Country.all_countries.forEach((CountryObj) => {
-        tabOrdonne.push(CountryObj);
-    })
+    tabOrdonne.sort((a, b) => {
+        let densityA = a[1].getPopDensity();
+        let densityB = b[1].getPopDensity();
 
-    tabOrdonne.sort((a,b) => {
-        if(isNaN(a.getPopDensity()) && isNaN(b.getPopDensity())){
-            return 0;
-        } else if (isNaN(a.getPopDensity())){
-            return b.getPopDensity();
-        } else if (isNaN(b.getPopDensity())){
-            return a.getPopDensity();
-        } else {
-            return b.getPopDensity() - a.getPopDensity();
-        }
+        if (isNaN(densityA) && isNaN(densityB)) return 0; 
+        if (isNaN(densityA)) return 1;
+        if (isNaN(densityB)) return -1;
+
+        return densityB - densityA;
     });
 
     return tabOrdonne;
