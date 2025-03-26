@@ -5,10 +5,10 @@
     box-sizing: border-box;
 }
 
-/* Corps de page */
+/* Corps de la page */
 body {
     font-family: 'K2D', sans-serif;
-    background-color: #f5f7fa;
+    background-color: #f4f7fc;
     color: #333;
     line-height: 1.6;
 }
@@ -18,46 +18,45 @@ header {
     background: linear-gradient(135deg, #4a90e2, #357ABD);
     color: white;
     text-align: center;
-    padding: 2rem 1rem;
+    padding: 3rem 1rem;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
 }
 
 header p {
     font-size: 1.2rem;
 }
 
-/* Section tests */
+/* Section des tests */
 #tests {
-    padding: 2rem 1rem;
+    padding: 2rem;
     max-width: 1200px;
     margin: auto;
     text-align: center;
 }
 
 #tests h2 {
-    font-size: 2rem;
+    font-size: 2.2rem;
     margin-bottom: 1rem;
     color: #222;
 }
 
-/* Barre de recherche */
+/* Input de recherche */
 #searchInput {
     width: 90%;
-    max-width: 600px;
-    padding: 0.75rem 1rem;
-    margin: 1rem auto;
+    max-width: 500px;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem auto;
     display: block;
     font-size: 1rem;
     border: 1px solid #ccc;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    font-family: 'K2D', sans-serif;
-    transition: 0.3s ease;
+    border-radius: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
 }
 
 #searchInput:focus {
@@ -66,313 +65,70 @@ header p {
     box-shadow: 0 0 0 3px rgba(53,122,189,0.2);
 }
 
-/* Container des tests */
+/* Cartes de test */
 .test-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
-/* Reset de base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* Corps de page */
-body {
-    font-family: 'K2D', sans-serif;
-    background-color: #f5f7fa;
-    color: #333;
-    line-height: 1.6;
-}
-
-/* Header */
-header {
-    background: linear-gradient(135deg, #4a90e2, #357ABD);
-    color: white;
-    text-align: center;
-    padding: 2rem 1rem;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-}
-
-header h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-}
-
-header p {
-    font-size: 1.2rem;
-}
-
-/* Section tests */
-#tests {
-    padding: 2rem 1rem;
-    max-width: 1200px;
-    margin: auto;
-    text-align: center;
-}
-
-#tests h2 {
-    font-size: 2rem;
-    margin-bottom: 1rem;
-    color: #222;
-}
-
-/* Barre de recherche */
-#searchInput {
-    width: 90%;
-    max-width: 600px;
-    padding: 0.75rem 1rem;
-    margin: 1rem auto;
-    display: block;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    font-family: 'K2D', sans-serif;
-    transition: 0.3s ease;
-}
-
-#searchInput:focus {
-    outline: none;
-    border-color: #357ABD;
-    box-shadow: 0 0 0 3px rgba(53,122,189,0.2);
-}
-
-/* Container des tests */
-.test-buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-    align-items: center;
-    margin-top: 2rem;
-}
-
-/* Élément individuel */
 .test-item {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
     background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    padding: 1rem;
-    width: 90%;
-    max-width: 700px;
+    border-radius: 15px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
+    text-align: center;
+}
+
+.test-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+}
+
+.test-item span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Footer */
+footer {
+    background-color: #f0f0f0;
+    color: #666;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+}
+
+.footer-container p {
+    margin: 0.3rem 0;
+}
+
+/* Animations et transitions */
+.test-item {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .test-item:hover {
-    background-color: #f7faff;
-    transform: scale(1.01);
-}
-
-/* Le bouton dans le test */
-.test-item button {
-    background-color: #4a90e2;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    color: white;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.test-item button:hover {
-    background-color: #357ABD;
+    background-color: #f1f8ff;
     transform: scale(1.05);
 }
 
-/* Tooltip avec image */
-.tooltip-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.tooltip-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    cursor: help;
-}
-
-/* Tooltip stylé */
-.tooltip {
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #357ABD;
-    color: #fff;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    display: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    z-index: 1000;
-    pointer-events: none;
-}
-
-/* Affichage du tooltip */
-.icon-with-tooltip:hover .tooltip {
-    display: block;
-}
-
-
-/* Responsive tooltip sur petit écran */
-@media (max-width: 600px) {
-    .test-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .tooltip-text {
-        top: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 0.5rem;
-    }
-}
-
-/* Footer */
-footer {
-    background-color: #f0f0f0;
-    color: #666;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    margin-top: 2rem;
-}
-
-.footer-container p {
-    margin: 0.3rem 0;
-}
-
-/* Listes de pays, monnaies, langues */
-#countries-list,
-#currencies-list,
-#languages-list {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: white;
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* Carousel (si utilisé) */
-.carousel-images {
-    display: flex;
-    transition: transform 0.5s ease;
-    width: 100%;
-    overflow: hidden;
-}
-
-.carousel-image {
-    min-width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-/* Responsive */
+/* Responsive design */
 @media (max-width: 768px) {
     header h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
     }
 
     #tests h2 {
-        font-size: 1.5rem;
+        font-size: 1.7rem;
     }
 
-    #countries-list,
-    #currencies-list,
-    #languages-list {
-        margin: 1rem;
+    .test-item {
         padding: 1rem;
+        font-size: 1rem;
     }
-}
-
-
-/* Tooltip avec image */
-.tooltip-container {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.tooltip-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    cursor: help;
-}
-
-/* Affichage du tooltip au survol */
-.tooltip-text {
-    position: absolute;
-    top: 50%;
-    left: 110%;
-    transform: translateY(-50%);
-    background-color: #357ABD;
-    color: #fff;
-    padding: 0.6rem 1rem;
-    border-radius: 8px;
-    font-size: 0.85rem;
-    white-space: nowrap;
-    display: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    z-index: 100;
-}
-
-.tooltip-container:hover .tooltip-text {
-    display: block;
-}
-
-/* Responsive tooltip sur petit écran */
-@media (max-width: 600px) {
-    .test-item {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .tooltip-text {
-        top: auto;
-        left: 50%;
-        transform: translateX(-50%);
-        margin-top: 0.5rem;
-    }
-}
-
-/* Footer */
-footer {
-    background-color: #f0f0f0;
-    color: #666;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    margin-top: 2rem;
-}
-
-.footer-container p {
-    margin: 0.3rem 0;
-}
-
-
-
-/* Responsive */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-
-    #tests h2 {
-        font-size: 1.5rem;
-    }
-
 }
