@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", function() {
         const row = document.createElement("tr");
         
         row.innerHTML = `<td>${countryObj._nom}</td>`;
+        row.innerHTML += `<td>${countryObj._population}</td>`;
+        row.innerHTML += `<td>${countryObj._continent}</td>`;
         
         tableBody.appendChild(row);
     });
