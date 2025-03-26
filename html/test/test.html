@@ -24,66 +24,34 @@
   <div class="test-buttons">
 
     <div class="test-item" onclick="outsideTheContinent()">
-      <div class="icon-with-tooltip">
-        <img src="images/continent.png" alt="continent" />
-        <div class="tooltip">Pays avec voisins sur différents continents</div>
-      </div>
       <span>Pays avec voisins sur différents continents</span>
     </div>
 
     <div class="test-item" onclick="moreNeighbors()">
-      <div class="icon-with-tooltip">
-        <img src="images/neighbors.png" alt="voisins" />
-        <div class="tooltip">Pays avec le plus de voisins</div>
-      </div>
       <span>Pays avec le plus de voisins</span>
     </div>
 
     <div class="test-item" onclick="neighborless()">
-      <div class="icon-with-tooltip">
-        <img src="images/isolated.png" alt="sans voisins" />
-        <div class="tooltip">Pays sans voisins</div>
-      </div>
       <span>Pays sans voisins</span>
     </div>
 
     <div class="test-item" onclick="moreLanguages()">
-      <div class="icon-with-tooltip">
-        <img src="images/languages.png" alt="langues" />
-        <div class="tooltip">Pays avec le plus de langues</div>
-      </div>
       <span>Pays avec le plus de langues</span>
     </div>
 
     <div class="test-item" onclick="withCommonLanguage()">
-      <div class="icon-with-tooltip">
-        <img src="images/common-language.png" alt="langue commune" />
-        <div class="tooltip">Pays avec voisins parlant une langue commune</div>
-      </div>
       <span>Pays avec voisins parlant une langue commune</span>
     </div>
 
     <div class="test-item" onclick="withoutCommonCurrency()">
-      <div class="icon-with-tooltip">
-        <img src="images/no-currency.png" alt="pas de monnaie commune" />
-        <div class="tooltip">Pays sans voisins avec une monnaie commune</div>
-      </div>
       <span>Pays sans voisins avec une monnaie commune</span>
     </div>
 
     <div class="test-item" onclick="sortingDecreasingDensity()">
-      <div class="icon-with-tooltip">
-        <img src="images/density.png" alt="densité" />
-        <div class="tooltip">Pays triés par densité décroissante</div>
-      </div>
       <span>Pays triés par densité de population décroissante</span>
     </div>
 
     <div class="test-item" onclick="moreTopLevelDomains()">
-      <div class="icon-with-tooltip">
-        <img src="images/domain.png" alt="domaines" />
-        <div class="tooltip">Pays avec plusieurs Top Level Domains</div>
-      </div>
       <span>Pays avec plusieurs Top Level Domains</span>
     </div>
 
@@ -117,26 +85,6 @@
     });
   });
 </script>
-
-  
-<script>
-  const tooltips = document.querySelectorAll('.icon-with-tooltip');
-
-  tooltips.forEach(icon => {
-    const tooltip = icon.querySelector('.tooltip');
-
-    icon.addEventListener('mousemove', (e) => {
-      tooltip.style.display = 'block';
-      tooltip.style.top = `${e.clientY + 15}px`;
-      tooltip.style.left = `${e.clientX + 15}px`;
-    });
-
-    icon.addEventListener('mouseleave', () => {
-      tooltip.style.display = 'none';
-    });
-  });
-</script>
-
 
 </body>
 </html>
