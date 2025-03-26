@@ -8,7 +8,7 @@ function outsideTheContinent(){
     tabOutside = [];
     Country.all_countries.forEach((countryObj,code) => {
         countryObj._pays_voisins.forEach(pays => {
-            if(pays._continent !== countryObj._continent){
+            if(pays._continent !== countryObj._continent && !tabOutside.includes(countryObj)){
                 tabOutside.push(countryObj);
             }
         });
