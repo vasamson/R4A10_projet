@@ -66,6 +66,10 @@ class Country {
 
         return country.flags.png || country.flag;
     }
+    getSurface(){
+        const country = countries.find(country => country.alpha3Code == this._code_alpha3).area;
+        return country.area;
+    }
 
     getCurrencies(){
         var tabCurrency = [];
