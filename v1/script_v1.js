@@ -1,4 +1,4 @@
-fetch('../data/countries.js')
+fetch('/data/countries.js')
     .then(response => response.json())
     .then(countries => {
         const tbody = document.getElementById('countries-list');
