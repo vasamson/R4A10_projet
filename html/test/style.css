@@ -1,253 +1,139 @@
-/* Styles globaux */
-body, html {
-    height: 100%; /* Assure que le body et html occupent toute la hauteur de la page */
+/* Reset de base */
+* {
     margin: 0;
     padding: 0;
-    font-family: 'K2D', sans-serif;
     box-sizing: border-box;
+}
+
+/* Corps de page */
+body {
+    font-family: 'K2D', sans-serif;
+    background-color: #f5f7fa;
+    color: #333;
+    line-height: 1.6;
+    padding: 0;
 }
 
 /* Header */
 header {
-    background-color: #4CAF50;
+    background: linear-gradient(135deg, #4a90e2, #357ABD);
     color: white;
-    padding: 20px;
     text-align: center;
+    padding: 2rem 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Container du logo */
-.logo-container h1 {
-    margin: 0;
-    font-size: 2.5em;
+header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
 }
 
-.logo-container p {
-    margin: 0;
-    font-size: 1.2em;
-    color: #f0f0f0;
+header p {
+    font-size: 1.2rem;
 }
 
-/* Menu de navigation */
-nav {
-    background-color: #333;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1em;
-    padding: 10px 20px;
-    display: inline-block;
-    transition: background-color 0.3s;
-}
-
-nav ul li a:hover {
-    background-color: #575757;
-}
-
-img {
-    height: 50px;
-    width:50px;
-    border-radius: 50px;
-}
-
-
-
-/* Section des tests */
+/* Section tests */
 #tests {
-    padding: 20px;
+    padding: 2rem 1rem;
+    max-width: 1200px;
+    margin: auto;
     text-align: center;
 }
 
 #tests h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #222;
 }
 
-/* Style pour les boutons */
+.test-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
 .test-buttons button {
-    background-color: #4CAF50;
-    color: white;
-    font-size: 1.2em;
-    padding: 15px 30px;
-    margin: 10px;
+    background-color: #4a90e2;
     border: none;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .test-buttons button:hover {
-    background-color: #45a049;
+    background-color: #357ABD;
+    transform: scale(1.05);
 }
 
-.test-buttons button:active {
-    background-color: #3e8e41;
-}
-
-/* Liste des pays */
-#countries-list {
-    padding: 20px;
-    background-color: #ffffff;
+/* Listes de pays, monnaies, langues */
+#countries-list,
+#currencies-list,
+#languages-list {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* Footer */
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #f0f0f0;
+    color: #666;
     text-align: center;
-    bottom: 0;
-    width: 100%;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
 }
 
-footer p {
-    margin: 5px 0;
+.footer-container p {
+    margin: 0.3rem 0;
 }
 
-/* Responsive: Menu de navigation pour les petits écrans */
-@media (max-width: 768px) {
-    nav ul li {
-        display: block;
-        margin: 10px 0;
-    }
-}
-
-/*
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////// CLASS CURRENCY ///////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
-/* Liste des devises (4 cartes par ligne) */
-#countries-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 4 colonnes égales */
-    gap: 20px;
-    padding: 30px;
-    background-color: #fff;
-    margin: 20px auto;
-    width: 90%;
-    border-radius: 10px;
-}
-
-/* Style de chaque carte */
-.currency-card {
-    background-color: #ecf0f1;
-    border-radius: 10px;
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.currency-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-}
-
-/* Style des éléments à l'intérieur des cartes */
-.currency-card h3 {
-    font-size: 1.5em;
-    color: #3498db;
-    margin-bottom: 10px;
-}
-
-.currency-card p {
-    font-size: 1.1em;
-    color: #7f8c8d;
-    margin-bottom: 5px;
-}
-
-.currency-card span {
-    font-weight: bold;
-    color: #34495e;
-}
-
-
-
-/*
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/////////////////////////////////////////////////////// CARROUSEL///////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-*/
-
-
-
-
-
-
-
-
-
-/* Carousel des continents */
-.carousel-container {
-    padding: 20px;
-    text-align: center;
-    background-color: #ffffff;
-}
-
-.carousel-container h2 {
-    font-size: 2em;
-    margin-bottom: 20px;
-    color: #333;
-}
-
-/* Conteneur du carousel */
-.carousel {
-    position: relative;
-    overflow: hidden;
-    width: 100%;
-}
-
-/* Conteneur des images à l'intérieur du carousel */
+/* Carousel (si présent) */
 .carousel-images {
     display: flex;
     transition: transform 0.5s ease;
-}
-
-/* Style des images dans le carousel */
-.carousel-image {
-    flex-shrink: 0; /* Empêche l'image de se rétrécir */
     width: 100%;
-    height: 300px; /* Hauteur des images dans le carousel */
-    object-fit: cover; /* Ajuste l'image sans déformation */
+    overflow: hidden;
 }
 
-/* Boutons de navigation du carousel */
-.carousel-prev, .carousel-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    font-size: 1.5em;
+.carousel-image {
+    min-width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
-.carousel-prev {
-    left: 10px;
+/* Responsive design */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    #tests h2 {
+        font-size: 1.5rem;
+    }
+
+    .test-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .test-buttons button {
+        width: 90%;
+        max-width: 300px;
+    }
+
+    #countries-list,
+    #currencies-list,
+    #languages-list {
+        margin: 1rem;
+        padding: 1rem;
+    }
 }
-
-.carousel-next {
-    right: 10px;
-}
-
-/* Amélioration des boutons lorsqu'ils sont survolés */
-.carousel-prev:hover, .carousel-next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-
