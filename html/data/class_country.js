@@ -1,7 +1,7 @@
 class Country {
     static all_countries = new Map(); // Utilisation d'une Map au lieu d'un tableau
 
-    constructor(code_alpha3, nom, capitale, continent, population, pays_voisins = []) {
+    constructor(code_alpha3, nom, capitale, continent, population, pays_voisins = [] ) {
         this._code_alpha3 = code_alpha3;
         this._nom = nom;
         this._capitale = capitale;
