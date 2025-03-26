@@ -11,7 +11,6 @@ body {
     background-color: #f5f7fa;
     color: #333;
     line-height: 1.6;
-    padding: 0;
 }
 
 /* Header */
@@ -46,100 +45,28 @@ header p {
     color: #222;
 }
 
-.test-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-}
-
-.test-buttons button {
-    background-color: #4a90e2;
-    border: none;
-    padding: 0.8rem 1.5rem;
-    color: white;
+/* Barre de recherche */
+#searchInput {
+    width: 90%;
+    max-width: 600px;
+    padding: 0.75rem 1rem;
+    margin: 1rem auto;
+    display: block;
     font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.test-buttons button:hover {
-    background-color: #357ABD;
-    transform: scale(1.05);
-}
-
-/* Listes de pays, monnaies, langues */
-#countries-list,
-#currencies-list,
-#languages-list {
-    max-width: 1200px;
-    margin: 2rem auto;
-    padding: 1rem;
-    background-color: white;
+    border: 1px solid #ccc;
     border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    font-family: 'K2D', sans-serif;
+    transition: 0.3s ease;
 }
 
-/* Footer */
-footer {
-    background-color: #f0f0f0;
-    color: #666;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    margin-top: 2rem;
+#searchInput:focus {
+    outline: none;
+    border-color: #357ABD;
+    box-shadow: 0 0 0 3px rgba(53,122,189,0.2);
 }
 
-.footer-container p {
-    margin: 0.3rem 0;
-}
-
-/* Carousel (si présent) */
-.carousel-images {
-    display: flex;
-    transition: transform 0.5s ease;
-    width: 100%;
-    overflow: hidden;
-}
-
-.carousel-image {
-    min-width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-
-    #tests h2 {
-        font-size: 1.5rem;
-    }
-
-    .test-buttons {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .test-buttons button {
-        width: 90%;
-        max-width: 300px;
-    }
-
-    #countries-list,
-    #currencies-list,
-    #languages-list {
-        margin: 1rem;
-        padding: 1rem;
-    }
-}
-
-
-
+/* Container des tests */
 .test-buttons {
     display: flex;
     flex-direction: column;
@@ -148,6 +75,7 @@ footer {
     margin-top: 2rem;
 }
 
+/* Élément individuel */
 .test-item {
     display: flex;
     align-items: center;
@@ -167,26 +95,40 @@ footer {
     transform: scale(1.01);
 }
 
-.test-item span {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-    flex: 1;
+/* Le bouton dans le test */
+.test-item button {
+    background-color: #4a90e2;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    color: white;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* Container de l’image + tooltip */
-.icon-with-tooltip {
+.test-item button:hover {
+    background-color: #357ABD;
+    transform: scale(1.05);
+}
+
+/* Tooltip avec image */
+.tooltip-container {
     position: relative;
+    display: flex;
+    align-items: center;
 }
 
-.icon-with-tooltip img {
-    width: 50px;
-    height: 50px;
+.tooltip-icon {
+    width: 40px;
+    height: 40px;
     object-fit: contain;
+    cursor: help;
 }
 
-/* Tooltip stylé */
-.tooltip {
+/* Affichage du tooltip au survol */
+.tooltip-text {
     position: absolute;
     top: 50%;
     left: 110%;
@@ -202,44 +144,78 @@ footer {
     z-index: 100;
 }
 
-.icon-with-tooltip:hover .tooltip {
+.tooltip-container:hover .tooltip-text {
     display: block;
 }
 
-/* Responsive */
+/* Responsive tooltip sur petit écran */
 @media (max-width: 600px) {
     .test-item {
         flex-direction: column;
         align-items: flex-start;
     }
 
-    .icon-with-tooltip img {
-        margin-bottom: 0.5rem;
-    }
-
-    .tooltip {
+    .tooltip-text {
         top: auto;
         left: 50%;
         transform: translateX(-50%);
         margin-top: 0.5rem;
     }
 }
-#searchInput {
-    width: 90%;
-    max-width: 600px;
-    padding: 0.75rem 1rem;
-    margin: 1rem auto;
-    display: block;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 12px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    font-family: 'K2D', sans-serif;
-    transition: 0.3s ease;
+
+/* Footer */
+footer {
+    background-color: #f0f0f0;
+    color: #666;
+    text-align: center;
+    padding: 1.5rem 1rem;
+    margin-top: 2rem;
 }
 
-#searchInput:focus {
-    outline: none;
-    border-color: #357ABD;
-    box-shadow: 0 0 0 3px rgba(53,122,189,0.2);
+.footer-container p {
+    margin: 0.3rem 0;
+}
+
+/* Listes de pays, monnaies, langues */
+#countries-list,
+#currencies-list,
+#languages-list {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* Carousel (si utilisé) */
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+    overflow: hidden;
+}
+
+.carousel-image {
+    min-width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    #tests h2 {
+        font-size: 1.5rem;
+    }
+
+    #countries-list,
+    #currencies-list,
+    #languages-list {
+        margin: 1rem;
+        padding: 1rem;
+    }
 }
