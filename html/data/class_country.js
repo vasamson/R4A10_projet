@@ -54,7 +54,7 @@ class Country {
             habSuperficie = pop / surface;
         }
 
-        return `${habSuperficie.toFixed(1)}`;
+        return Math.floor(habSuperficie * 10) / 10;
     }
 
     getBorders(){
