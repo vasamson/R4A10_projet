@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // row.innerHTML += `<td>${countryObj.getPopDensity()}</td>`;
         row.innerHTML += `<td>${countryObj._continent}</td>`;
         // row.innerHTML += `<td>${countryObj._surface}</td>`;
-        // row.innerHTML += `<td>${countryObj._drapeau}</td>`;
+        // row.innerHTML += `<td>${countryObj.getFlags()}</td>`;
         tableBody.appendChild(row);
     });
 });
