@@ -118,5 +118,25 @@
   });
 </script>
 
+  
+<script>
+  const tooltips = document.querySelectorAll('.icon-with-tooltip');
+
+  tooltips.forEach(icon => {
+    const tooltip = icon.querySelector('.tooltip');
+
+    icon.addEventListener('mousemove', (e) => {
+      tooltip.style.display = 'block';
+      tooltip.style.top = `${e.clientY + 15}px`;
+      tooltip.style.left = `${e.clientX + 15}px`;
+    });
+
+    icon.addEventListener('mouseleave', () => {
+      tooltip.style.display = 'none';
+    });
+  });
+</script>
+
+
 </body>
 </html>
