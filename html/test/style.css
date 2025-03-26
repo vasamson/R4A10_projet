@@ -132,3 +132,47 @@ footer {
         font-size: 1rem;
     }
 }
+
+/* Section d'informations supplémentaires */
+#extra-info {
+    background-color: #fff;
+    padding: 2rem;
+    margin-top: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+}
+
+#extra-info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+#extra-info p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+.info-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.info-card {
+    background-color: #f7f7f7;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.info-card h3 {
+    font-size: 1.3rem;
+    color: #357ABD;
+}
+
+.info-card p {
+    font-size: 1rem;
+    color: #666;
+}
