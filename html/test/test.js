@@ -187,3 +187,27 @@ function sortingDecreasingDensity(){
 }
 
 // console.table(sortingDecreasingDensity());
+
+/* QUESTION 8 : moreTopLevelDomains()
+*
+* La fonction parcourt chaque pays de Country.all_countries
+* et renvoie un tableau des pays dont le tableau topLevelDomain a une longueur > 1
+*/
+
+function moreTopLevelDomains(){
+    let tabDomains = [];
+
+    Country.all_countries.forEach((CountryObj) => {
+        const country = countries.find(country => country.alpha3Code == CountryObj._code_alpha3);
+        
+        if(country){
+            if(country.topLevelDomain.length > 1){
+                tabDomains.push(CountryObj);
+            }
+        }
+    });
+    
+    return tabDomains;
+}
+
+// console.log(moreTopLevelDomains());
