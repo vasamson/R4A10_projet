@@ -388,3 +388,17 @@ span#btn-pag.pagination-button {
 .popup-overlay.active {
     display: flex;
 }
+
+
+.popup-box::-webkit-scrollbar {
+    width: 8px; /* Largeur de la barre */
+}
+
+.popup-box::-webkit-scrollbar-thumb {
+    background: #0077cc; /* Couleur de la barre */
+    border-radius: 5px;
+}
+
+.popup-box::-webkit-scrollbar-track {
+    background: #f4f4f4; /* Couleur du fond */
+}
