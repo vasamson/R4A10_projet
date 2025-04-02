@@ -3,12 +3,11 @@ $(document).ready(function() {
     const continentFilter = $("#continent");
     const languageFilter = $("#language");
     const countryNameFilter = $("#country-name");
-    const cacheDiv = $("#cache");
     const itemsPerPage = 25;
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; // Début en tri décroissant (Z → A)
+    let currentSortOrder = 'desc'; // Début en décroissant (Z → A)
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -116,7 +115,9 @@ $(document).ready(function() {
         // En cas d'égalité, trier par nom du pays
         filteredCountries.sort((a, b) => {
             if (a[currentSortColumn] === b[currentSortColumn]) {
-                return a._nom.localeCompare(b._nom);
+                return currentSortOrder === 'desc'
+                    ? b._nom.localeCompare(a._nom)
+                    : a._nom.localeCompare(b._nom);
             }
             return 0;
         });
@@ -133,10 +134,6 @@ $(document).ready(function() {
         const column = $(this).data("sort");
         sortCountries(column);
     });
-
-    if (cacheDiv.length) {
-        cacheDiv.hide();
-    }
 
     continentFilter.change(updateFilters);
     languageFilter.change(updateFilters);
