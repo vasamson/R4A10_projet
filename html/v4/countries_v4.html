@@ -15,19 +15,25 @@
           </div>
         </header>
         <main>
-            <div id="filters">
-                <label for="continent">Continent :</label>
-                <select id="continent">
-                    <option value="">-- Tous --</option>
-                </select>
+            <div id="filters" ">
+                <div class="filter-continent">
+                    <label for="continent">Continent :</label>
+                    <select id="continent">
+                        <option value="">-- Tous --</option>
+                    </select>
+                </div>
                 
-                <label for="language">Langue :</label>
-                <select id="language">
-                    <option value="">-- Toutes --</option>
-                </select>
+                <div class="filter-language">
+                    <label for="language">Langue :</label>
+                    <select id="language">
+                        <option value="">-- Toutes --</option>
+                    </select>
+                </div>
                 
-                <label for="country-name">Pays :</label>
-                <input type="text" id="country-name" placeholder="Rechercher un pays">
+                <div class="filter-country">
+                    <label for="country-name">Pays :</label>
+                    <input type="text" id="country-name" placeholder="Rechercher un pays">
+                </div>
             </div>
             
             <table>
