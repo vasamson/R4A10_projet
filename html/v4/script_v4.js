@@ -37,8 +37,10 @@ $(document).ready(function() {
     function getFilteredCountries() {
         return Array.from(Country.all_countries.values()).filter(country => {
             const matchesContinent = !continentFilter.val() || country._continent === continentFilter.val();
-            const matchesLanguage = !languageFilter.val() ||  (country.getLanguages() && country.getLanguages().toLowerCase().includes(languageFilter.val().toLowerCase()));
-
+            const matchesLanguage = !languageFilter.val() || 
+                (country._languages && Object.values(country._languages).some(lang => 
+                    lang.name && lang.name.toLowerCase() === languageFilter.val().toLowerCase()
+                ));
             const matchesName = !countryNameFilter.val() || removeAccents(country._nom.toLowerCase()).includes(removeAccents(countryNameFilter.val().toLowerCase()));
             return matchesContinent && matchesLanguage && matchesName;
         });
@@ -51,7 +53,7 @@ $(document).ready(function() {
         const countriesToShow = filteredCountries.slice(startIndex, endIndex);
 
         countriesToShow.forEach(country => {
-            let languages = country._languages ? Object.values(country._languages).map(lang => lang.name).join(", ") : "N/A";
+            let languages = country._languages ? country._languages.map(lang => lang.name).join(", ") : "N/A";
             
             const row = $(
                 `<tr>
