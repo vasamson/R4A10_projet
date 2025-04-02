@@ -5,6 +5,7 @@
         <title>Liste des Pays</title>
         <link rel="stylesheet" href="../style.css">
         <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
+        <script src="../jquery-3.6.3-min.js"></script>
     </head>
     <body>
         <header>
@@ -30,8 +31,11 @@
                     <!-- lignes remplies dynamiquement via le script_v1 -->
                 </tbody>
             </table>
-            <span id="btn-pag"></span>
-            <p id="pagination"></p>
+                <div class="pagination-container">
+                <span id="btn-pag" class="pagination-button"></span>
+                <p id="pagination" class="pagination-text"></p>
+            </div>
+
         </main>
         <footer>
           <div class="footer-container">
