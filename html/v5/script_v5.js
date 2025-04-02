@@ -1,29 +1,64 @@
 $(document).ready(function() {
     const tableBody = $("#countries-list");
+    const continentFilter = $("#continent");
+    const languageFilter = $("#language");
+    const countryNameFilter = $("#country-name");
+    const cacheDiv = $("#cache");
     const itemsPerPage = 25;
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; // On commence par un tri décroissant
+    let currentSortOrder = 'desc'; // On commence par l'ordre décroissant ('desc')
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
         return;
     }
 
-    function getFilteredCountries() {
-        return Array.from(Country.all_countries.values());
+    function populateFilters() {
+        const continents = new Set();
+        const languages = new Set();
+
+        Country.all_countries.forEach(country => {
+            if (country._continent) continents.add(country._continent);
+        });
+
+        Language.all_languages.forEach(language => {
+            languages.add(language._nom);
+        });
+
+        continents.forEach(continent => {
+            continentFilter.append(new Option(continent, continent));
+        });
+
+        languages.forEach(language => {
+            languageFilter.append(new Option(language, language));
+        });
     }
 
-    function afficheTable() {
+    function getFilteredCountries() {
+        return Array.from(Country.all_countries.values()).filter(country => {
+            const matchesContinent = !continentFilter.val() || country._continent === continentFilter.val();
+            const matchesLanguage = !languageFilter.val() || 
+                (country._languages && Object.values(country._languages).some(lang => 
+                    lang.name && lang.name.toLowerCase() === languageFilter.val().toLowerCase()
+                ));
+            const matchesName = !countryNameFilter.val() || removeAccents(country._nom.toLowerCase()).includes(removeAccents(countryNameFilter.val().toLowerCase()));
+            return matchesContinent && matchesLanguage && matchesName;
+        });
+    }
+
+    function afficheTable(page) {
         tableBody.empty();
-        const startIndex = (currentPage - 1) * itemsPerPage;
+        const startIndex = (page - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const countriesToShow = filteredCountries.slice(startIndex, endIndex);
 
         countriesToShow.forEach(country => {
-            const row = $(`
-                <tr>
+            let languages = country._languages ? country._languages.map(lang => lang.name).join(", ") : "N/A";
+            
+            const row = $(
+                `<tr>
                     <td>${country._nom}</td>
                     <td>${country._population}</td>
                     <td>${country.getLanguages()}</td>
@@ -31,8 +66,8 @@ $(document).ready(function() {
                     <td>${country.getPopDensity()}</td>
                     <td>${country._continent}</td>
                     <td><img src="${country.getFlags()}" alt="Drapeau de ${country._nom}" width="50"></td>
-                </tr>
-            `);
+                </tr>`
+            );
             tableBody.append(row);
         });
 
@@ -40,62 +75,83 @@ $(document).ready(function() {
     }
 
     function updatePagination() {
-        $("#pagination").html(`Page : ${currentPage} / ${Math.ceil(filteredCountries.length / itemsPerPage)}`);
+        const paginationContainer = $("#pagination");
+        paginationContainer.html(`Page : ${currentPage} / ${Math.ceil(filteredCountries.length / itemsPerPage)}`);
+    }
+
+    function updateFilters() {
+        filteredCountries = getFilteredCountries();
+        currentPage = 1;
+        afficheTable(currentPage);
+    }
+
+    function removeAccents(str) {
+        return str.normalize("NFD").replace(/\p{Diacritic}/gu, "");
     }
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
+            // Si on clique sur la même colonne, on inverse l'ordre du tri
             currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
         } else {
+            // Si on change de colonne, on commence par un tri décroissant par défaut
             currentSortColumn = column;
-            currentSortOrder = 'desc'; // Toujours commencer par décroissant
+            currentSortOrder = 'desc'; // Tri initialement décroissant
         }
 
+        // Effectuer le tri
         filteredCountries.sort((a, b) => {
-            let valA = getColumnValue(a, column);
-            let valB = getColumnValue(b, column);
+            let valA = a[column];
+            let valB = b[column];
 
+            // Si la valeur est un nombre, on effectue un tri numérique
             if (typeof valA === 'number' && typeof valB === 'number') {
                 return currentSortOrder === 'desc' ? valB - valA : valA - valB;
             }
 
+            // Sinon, on effectue un tri alphabétique
             if (typeof valA === 'string' && typeof valB === 'string') {
                 return currentSortOrder === 'desc' 
                     ? valB.localeCompare(valA) 
                     : valA.localeCompare(valB);
             }
 
-            return 0;
+            return 0; // En cas de types différents ou valeurs non triables
         });
 
-        // Départage en cas d'égalité par le nom du pays
-        filteredCountries.sort((a, b) => {
-            if (getColumnValue(a, column) === getColumnValue(b, column)) {
-                return a._nom.localeCompare(b._nom);
-            }
-            return 0;
-        });
-
-        afficheTable();
-    }
-
-    function getColumnValue(country, column) {
-        switch (column) {
-            case "nom": return country._nom;
-            case "population": return country._population;
-            case "languages": return country.getLanguages();
-            case "surface": return country.getSurface();
-            case "density": return country.getPopDensity();
-            case "continent": return country._continent;
-            default: return "";
+        // Si deux pays ont la même valeur, on les départage par nom (français)
+        if (currentSortColumn !== 'flags') {
+            filteredCountries.sort((a, b) => {
+                if (a[currentSortColumn] === b[currentSortColumn]) {
+                    return a._nom.localeCompare(b._nom); // départage par le nom
+                }
+                return 0;
+            });
         }
+
+        // Mettre en gras la colonne triée
+        $("th").css("font-weight", "normal");
+        $(`th button[data-sort="${column}"]`).css("font-weight", "bold");
+
+        afficheTable(currentPage);
     }
 
+    // Ajouter l'écouteur d'événement pour le tri sur chaque bouton
     $("button[data-sort]").click(function() {
         const column = $(this).data("sort");
+
         sortCountries(column);
     });
 
+    if (cacheDiv.length) {
+        cacheDiv.hide();
+    }
+
+    continentFilter.change(updateFilters);
+    languageFilter.change(updateFilters);
+    countryNameFilter.on("input", updateFilters);
+
+    populateFilters();
     filteredCountries = getFilteredCountries();
-    afficheTable();
+    afficheTable(currentPage);
 });
