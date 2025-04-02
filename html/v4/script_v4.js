@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const continentFilter = document.getElementById("continent");
     const languageFilter = document.getElementById("language");
     const countryNameFilter = document.getElementById("country-name");
+    const cacheDiv = document.getElementById("cache");
     const itemsPerPage = 25;
     let currentPage = 1;
     let filteredCountries = [];
@@ -79,6 +80,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     function removeAccents(str) {
         return str.normalize("NFD").replace(/\p{Diacritic}/gu, "");
+    }
+
+    // Assurer que #cache est bien masqué dès le chargement de la page
+    if (cacheDiv) {
+        cacheDiv.style.display = "none";
     }
 
     continentFilter.addEventListener("change", updateFilters);
