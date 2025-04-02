@@ -8,7 +8,7 @@ $(document).ready(function() {
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; // On commence en tri décroissant
+    let currentSortOrder = 'desc'; // Début en tri décroissant (Z → A)
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -89,10 +89,10 @@ $(document).ready(function() {
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
-            // Si on clique sur la même colonne, on inverse l'ordre du tri
+            // Inverser le tri si on clique sur la même colonne
             currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
         } else {
-            // Si on change de colonne, on commence par un tri décroissant par défaut
+            // Nouveau tri sur une colonne : commencer en décroissant
             currentSortColumn = column;
             currentSortOrder = 'desc';
         }
@@ -121,7 +121,7 @@ $(document).ready(function() {
             return 0;
         });
 
-        // Mise en gras du bouton correspondant
+        // Mettre en gras le bouton trié
         $("button[data-sort]").css("font-weight", "normal");
         $(`button[data-sort="${column}"]`).css("font-weight", "bold");
 
