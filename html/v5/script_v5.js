@@ -91,7 +91,7 @@ $(document).ready(function() {
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
-            // Inverser l'ordre du tri (si on clique sur la même colonne)
+            // Si on clique sur la même colonne, on inverse l'ordre du tri
             currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
         } else {
             // Si on change de colonne, on trie par ordre croissant par défaut
