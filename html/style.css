@@ -46,6 +46,11 @@ header p {
     margin-top: 20px;
 }
 
+
+#pagination-button {
+    display: flex;
+}
+
 .pagination-button > button {
     width: 70px;
     height: 40px;
