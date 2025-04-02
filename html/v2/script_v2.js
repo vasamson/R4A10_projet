@@ -49,10 +49,12 @@ $(document).ready(function() {
 
         $tableBody.append($fragment);
         gestionBoutons(page);
+
+        $("#pagination").text(`Page : ${currentPage} / ${totalPages}`);
     }
 
     function gestionBoutons(page) {
-        const $conteneurBtn = $("#pagination-container").empty(); // les anciens boutons disparaissent
+        const $conteneurBtn = $("#btn-pag").empty(); // les anciens boutons disparaissent
 
         // bouton "Précédent"
         if (page > 1) {
@@ -62,8 +64,6 @@ $(document).ready(function() {
             });
             $conteneurBtn.append($btnPrecedent);
         }
-
-        $("#pagination").text(`Page : ${currentPage} / ${totalPages}`);
 
         // bouton "Suivant"
         if (page < totalPages) {
