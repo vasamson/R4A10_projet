@@ -506,6 +506,9 @@ span#btn-pag.pagination-button {
     background-color: #f9f9f9;
     font-size: 14px;
     cursor: pointer;
+    border:none;
+    box-shadow: 0 0 5px rgba(0, 119, 204, 0.5);
+    
 }
 
 #continent:hover,
