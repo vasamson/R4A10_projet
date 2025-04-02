@@ -98,4 +98,35 @@ $(document).ready(function() {
     populateFilters();
     filteredCountries = getFilteredCountries();
     afficheTable(currentPage);
+
+    function gestionBoutons(page) {
+        const $conteneurBtn = $("#btn-pag").empty(); // les anciens boutons disparaissent
+
+        // bouton "Précédent"
+        if (page > 1) {
+            const $btnPrecedent = $("<button>").text("PRÉC").on("click", function() {
+                currentPage--;
+                afficheTable(currentPage);
+            });
+            $conteneurBtn.append($btnPrecedent);
+        }
+
+        const $pagination = $("<p>", {
+            id: "pagination",
+            class: "pagination-text"
+        });
+
+        $pagination.text(`${currentPage} sur ${totalPages}`);
+        $conteneurBtn.append($pagination);
+
+        // bouton "Suivant"
+        if (page < totalPages) {
+            const $btnSuivant = $("<button>").text("SUIV").on("click", function() {
+                currentPage++;
+                afficheTable(currentPage);
+            });
+            $conteneurBtn.append($btnSuivant);
+        }
+    }
+
 });
