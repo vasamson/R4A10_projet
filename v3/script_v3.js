@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 afficheDetails(countryObj._code_alpha3);
             });
 
-            // Cellules de texte
+            // cellules de texte
             const columns = [
                 countryObj._nom,
                 countryObj._population,
