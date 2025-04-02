@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="utf-8">
+        <title>Liste des Pays</title>
+        <link rel="stylesheet" href="../style.css">
+    </head>
+    <body>
+        <header>
+            <h1>Liste des Pays</h1>
+        </header>
+        <main>
+            <div id="filters">
+                <label for="continent">Continent :</label>
+                <select id="continent">
+                    <option value="">-- Tous --</option>
+                </select>
+                
+                <label for="language">Langue :</label>
+                <select id="language">
+                    <option value="">-- Toutes --</option>
+                </select>
+                
+                <label for="country-name">Pays :</label>
+                <input type="text" id="country-name" placeholder="Rechercher un pays">
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Population</th>
+                        <th>Surface : km²</th>
+                        <th>Densité : habitants au km² </th>
+                        <th>Continent</th>
+                        <th>Drapeaux</th>
+                    </tr>
+                </thead>
+                <tbody id="countries-list">
+                    <!-- lignes remplies dynamiquement via le script -->
+                </tbody>
+            </table>
+            <span id="btn-pag"></span>
+            <p id="pagination"></p>
+        </main>
+        <div id="cache"></div>
+        <script src="../data/countries.js"></script>
+        <script src="../data/class_country.js"></script>
+        <script src="script_v4.js"></script>
+    </body>
+</html>
