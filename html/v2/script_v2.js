@@ -68,7 +68,7 @@ $(document).ready(function() {
             class: "pagination-text"
         });
 
-        $pagination.text(`Page : ${currentPage} / ${totalPages}`);
+        $pagination.text(`${currentPage} sur ${totalPages}`);
         $conteneurBtn.append($pagination);
 
         // bouton "Suivant"
