@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             row.setAttribute("data-code",countryObj._code_alpha3); // ajout de l'attribut pour identifier le pays
             row.addEventListener('click',() => {
-                document.getElementById('cache').style.display = "block";
+                document.getElementById('cache').style.display = "flex";
                 afficheDetails(countryObj._code_alpha3);
             });
 
@@ -110,6 +110,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         titre_header = header_popup.querySelector('h2');
         titre_header.textContent = pays._nom;
+
+        /* INFORMATIONS GÉNÉRALES */
+
+        infos_generales = article
 
 
     }
