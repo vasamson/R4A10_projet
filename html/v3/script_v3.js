@@ -99,29 +99,6 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         console.log(pays);
-        
-        // Création du premier article;
-        boite_details = document.createElement("article");
-        boite_details.id = "boite-details";
-        boite_details.classList.add("popup-box");
-
-        // Création du header de l'article
-        header_popup = document.createElement("header");
-        header_popup.classList.add("popup-header");
-        image_header = document.createElement("img");
-        // Création de l'image
-        image_header.src = pays.getFlags();
-        image_header.classList.add("popup-flag");
-        titre_popup = document.createElement("h2");
-        titre_popup.classList.add("popup-title");
-        titre_popup.textContent = (`${pays._nom}`);
-
-        header_popup.appendChild(image_header);
-        header_popup.appendChild(titre_popup);
-
-        boite_details.appendChild(header_popup);
-
-        document.getElementById('cache').appendChild(boite_details);
     }
     
     

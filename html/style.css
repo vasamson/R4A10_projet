@@ -524,5 +524,5 @@ span#btn-pag.pagination-button {
 }
 
 tbody tr:hover {
-    color : pink;
+    background-color : pink;
 }
