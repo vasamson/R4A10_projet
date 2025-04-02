@@ -44,7 +44,7 @@ $(document).ready(function() {
 
             // Modification pour vérifier si la langue sélectionnée est présente dans les langues du pays
             const matchesLanguage = !languageFilter.val() || 
-                (country._languages && Object.values(country._languages).some(lang => 
+                (language.nom && Object.values(language.nom).some(lang => 
                     lang.name && lang.name.toLowerCase().includes(languageFilter.val().toLowerCase())
                 ));
 
@@ -66,8 +66,8 @@ $(document).ready(function() {
             const row = $(`
                 <tr>
                     <td>${country._nom}</td>
-                    <td>${country._po.pulation}</td>
-                    <td>${country.getLanguages()}</td>
+                    <td>${country._population}</td>
+                    <td>${language.nom}</td>
                    <td>${country.getSurface()}</td>
                     <td>${country.getPopDensity()}</td>
                     <td>${country._continent}</td>
