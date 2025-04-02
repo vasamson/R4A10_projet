@@ -19,10 +19,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
         Country.all_countries.forEach(country => {
             if (country._continent) continents.add(country._continent);
-        });
-
-        Language.all_languages.forEach(language => {
-            languages.add(language._nom);
+            if (country._languages) {
+                Object.values(country._languages).forEach(lang => languages.add(lang.name));
+            }
         });
 
         continents.forEach(continent => {
