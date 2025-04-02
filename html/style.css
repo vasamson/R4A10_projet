@@ -123,6 +123,17 @@ td img {
     margin: auto;
 }
 
+#cache {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
 #boite-details{
     background-color: white;
 }
@@ -411,14 +422,14 @@ span#btn-pag.pagination-button {
 #filters {
     display: flex;
     flex-wrap: wrap;
-    /* gap: 15px; */
+    gap: 15px;
     align-items: center;
     justify-content: center;
-    /* background: #f4f4f4; */
-    /* padding: 15px; */
+    background: #f4f4f4;
+    padding: 15px;
     border-radius: 10px;
-    /* box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); */
-    /* max-width: 800px; */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
     margin: 20px auto;
 }
 

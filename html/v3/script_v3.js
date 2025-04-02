@@ -61,41 +61,35 @@ document.addEventListener("DOMContentLoaded", function() {
         tableBody.appendChild(fragment);
         gestionBoutons(page);
 
-        paragraphe_page = document.getElementById('pagination');
-        console.log(paragraphe_page);
-        paragraphe_page.innerHTML = `Page : ${currentPage} sur ${totalPages}`;
     };
 
     function gestionBoutons(page) {
-        const conteneur_btn = document.getElementById('btn-pag');
-        conteneur_btn.innerHTML = ""; // les anciens boutons disparaissent
+        const $conteneurBtn = $("#btn-pag").empty(); // les anciens boutons disparaissent
 
         // bouton "Précédent"
         if (page > 1) {
-            const btn_precedent = document.createElement("button");
-            btn_precedent.textContent = "PRÉC";
-            
-            // cliquer sur "Précédent" décrémente la pagination
-            btn_precedent.addEventListener('click', function() {
+            const $btnPrecedent = $("<button>").text("PRÉC").on("click", function() {
                 currentPage--;
                 afficheTable(currentPage);
             });
-            
-            conteneur_btn.appendChild(btn_precedent);
+            $conteneurBtn.append($btnPrecedent);
         }
+
+        const $pagination = $("<p>", {
+            id: "pagination",
+            class: "pagination-text"
+        });
+
+        $pagination.text(`${currentPage} sur ${totalPages}`);
+        $conteneurBtn.append($pagination);
 
         // bouton "Suivant"
         if (page < totalPages) {
-            const btn_suivant = document.createElement("button");
-            btn_suivant.textContent = "SUIV";
-            
-            // Cliquer sur "Suivant" incrémente la pagination
-            btn_suivant.addEventListener('click', function() {
+            const $btnSuivant = $("<button>").text("SUIV").on("click", function() {
                 currentPage++;
                 afficheTable(currentPage);
             });
-
-            conteneur_btn.appendChild(btn_suivant);
+            $conteneurBtn.append($btnSuivant);
         }
     }
 
