@@ -138,7 +138,6 @@ td img {
     background-color: white;
 }
 
-
 /* Footer */
 
 footer {
@@ -272,6 +271,7 @@ span#btn-pag.pagination-button {
 
 /* En-tête de la popup */
 .popup-header {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -369,18 +369,20 @@ span#btn-pag.pagination-button {
     border-radius: 3px;
 }
 
-/* Bouton de fermeture */
 .popup-close {
     position: absolute;
     top: 10px;
-    right: 15px;
-    font-size: 1.5rem;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
     cursor: pointer;
-    color: #555;
+    color: #333;
+    z-index: 10;
 }
 
 .popup-close:hover {
-    color: #d00;
+    color: red;
 }
 
 /* Affichage de la popup */

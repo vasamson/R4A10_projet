@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
             row.setAttribute("data-code",countryObj._code_alpha3); // ajout de l'attribut pour identifier le pays
             row.addEventListener('click',() => {
-                document.getElementById('cache').style.display = "flex";
                 afficheDetails(countryObj._code_alpha3);
             });
 
@@ -94,6 +93,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     function afficheDetails(code_alpha3) {
+
+        document.getElementById('cache').style.display = "flex";
+
         const pays = Array.from(Country.all_countries.values()).find(country => {
             return country._code_alpha3 === code_alpha3;
         });
@@ -186,6 +188,13 @@ document.addEventListener("DOMContentLoaded", function() {
             ligne.appendChild(data_drapeau);
 
             tableauVoisins.appendChild(ligne);
+        });
+
+        /* GESTION DE LA CROIX */
+
+        var btnClose = article_details.querySelector('#close-popup');
+        btnClose.addEventListener('click', function(){
+            document.getElementById('cache').style.display = "none";
         });
 
     }
