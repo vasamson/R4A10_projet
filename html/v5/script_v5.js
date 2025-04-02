@@ -7,7 +7,7 @@ $(document).ready(function() {
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; // Début en décroissant (Z → A)
+    let currentSortOrder = 'desc'; // Tri initial en ordre décroissant
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -88,12 +88,12 @@ $(document).ready(function() {
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
-            // Inverser le tri si on clique sur la même colonne
+            // Si on clique sur la même colonne, on inverse l'ordre du tri
             currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
         } else {
-            // Nouveau tri sur une colonne : commencer en décroissant
+            // Si on change de colonne, on commence par un tri décroissant par défaut
             currentSortColumn = column;
-            currentSortOrder = 'desc';
+            currentSortOrder = 'desc'; // Tri initialement décroissant
         }
 
         filteredCountries.sort((a, b) => {
