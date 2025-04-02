@@ -90,51 +90,36 @@ $(document).ready(function() {
     }
 
     function sortCountries(column) {
+        // Définir le tri en Z → A ou décroissant par défaut
         if (currentSortColumn === column) {
-            // Si on clique sur la même colonne, on inverse l'ordre du tri
             currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
         } else {
-            // Si on change de colonne, on commence par un tri décroissant par défaut
             currentSortColumn = column;
-            currentSortOrder = 'desc'; // Tri initialement décroissant
+            currentSortOrder = 'desc';  // On force l'ordre décroissant
         }
-
-        // Effectuer le tri
+    
         filteredCountries.sort((a, b) => {
             let valA = a[column];
             let valB = b[column];
-
-            // Si la valeur est un nombre, on effectue un tri numérique
-            if (typeof valA === 'number' && typeof valB === 'number') {
-                return currentSortOrder === 'desc' ? valB - valA : valA - valB;
-            }
-
-            // Sinon, on effectue un tri alphabétique
-            if (typeof valA === 'string' && typeof valB === 'string') {
-                return currentSortOrder === 'desc' 
-                    ? valB.localeCompare(valA) 
-                    : valA.localeCompare(valB);
-            }
-
-            return 0; // En cas de types différents ou valeurs non triables
+    
+            if (valA == null) valA = "";
+            if (valB == null) valB = "";
+    
+            // Tri numérique ou alphabétique inversé
+            return currentSortOrder === 'desc'
+                ? valB.toString().localeCompare(valA.toString(), 'fr', { ignorePunctuation: true })
+                : valA.toString().localeCompare(valB.toString(), 'fr', { ignorePunctuation: true });
         });
-
-        // Si deux pays ont la même valeur, on les départage par nom (français)
-        if (currentSortColumn !== 'flags') {
-            filteredCountries.sort((a, b) => {
-                if (a[currentSortColumn] === b[currentSortColumn]) {
-                    return a._nom.localeCompare(b._nom); // départage par le nom
-                }
-                return 0;
-            });
-        }
-
-        // Mettre en gras la colonne triée
-        $("th").css("font-weight", "normal");
-        $(`th button[data-sort="${column}"]`).css("font-weight", "bold");
-
+    
         afficheTable(currentPage);
     }
+    
+    // Attacher l'événement sur les boutons
+    $(document).on("click", "button[data-sort]", function() {
+        const column = $(this).data("sort");
+        sortCountries(column);
+    });
+    
 
     // Ajouter l'écouteur d'événement pour le tri sur chaque bouton
     $("button[data-sort]").click(function() {
