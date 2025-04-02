@@ -257,7 +257,6 @@ span#btn-pag.pagination-button {
     height: 800px;
     overflow-y: scroll;
 }
-}
 
 /* Animation d'apparition */
 @keyframes fadeIn {
