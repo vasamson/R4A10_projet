@@ -254,6 +254,9 @@ span#btn-pag.pagination-button {
     text-align: center;
     position: relative;
     animation: fadeIn 0.3s ease-in-out;
+    height: 800px;
+    overflow-y: scroll;
+}
 }
 
 /* Animation d'apparition */
