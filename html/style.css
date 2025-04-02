@@ -4,7 +4,9 @@
     box-sizing: border-box;
 }
 
+
 /* Corps de la page */
+
 body {
     font-family: 'K2D', sans-serif;
     background-color: #f4f7fc;
@@ -15,7 +17,9 @@ body {
     align-items: center;
 }
 
+
 /* Header */
+
 header {
     background: linear-gradient(135deg, #4a90e2, #357ABD);
     color: white;
@@ -33,13 +37,14 @@ header h1 {
 header p {
     font-size: 1.2rem;
 }
+
 table {
     width: 100%;
     border-collapse: collapse;
     background-color: #fff;
     overflow: hidden;
     border-radius: 20px;
-    border: 1px solid #000000; !important
+    border: 1px solid #000000 !important;
 }
 
 thead {
@@ -48,13 +53,14 @@ thead {
     text-align: left;
 }
 
-th, td {
+th,
+td {
     padding: 12px;
     border-bottom: 1px solid #ddd;
     text-align: center;
 }
 
-tbody tr{
+tbody tr {
     transition: 0.25s ease-in-out;
 }
 
@@ -84,7 +90,9 @@ td img {
     z-index: 1;
 }
 
+
 /* Footer */
+
 footer {
     background-color: #f0f0f0;
     color: #666;
@@ -97,6 +105,7 @@ footer {
 .footer-container p {
     margin: 0.3rem 0;
 }
+
 main {
     width: 80%;
     border-radius: 20px;
