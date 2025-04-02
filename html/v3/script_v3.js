@@ -62,7 +62,8 @@ document.addEventListener("DOMContentLoaded", function() {
         gestionBoutons(page);
 
         paragraphe_page = document.getElementById('pagination');
-        paragraphe_page.innerHTML = `Page : ${currentPage} / ${totalPages}`;
+        console.log(paragraphe_page);
+        paragraphe_page.innerHTML = `Page : ${currentPage} sur ${totalPages}`;
     };
 
     function gestionBoutons(page) {
