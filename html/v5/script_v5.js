@@ -8,7 +8,7 @@ $(document).ready(function() {
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'asc'; // 'asc' pour croissant, 'desc' pour décroissant
+    let currentSortOrder = 'desc'; // On commence par l'ordre décroissant ('desc')
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -94,9 +94,9 @@ $(document).ready(function() {
             // Si on clique sur la même colonne, on inverse l'ordre du tri
             currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
         } else {
-            // Si on change de colonne, on trie par ordre croissant par défaut
+            // Si on change de colonne, on commence par un tri décroissant par défaut
             currentSortColumn = column;
-            currentSortOrder = 'asc';
+            currentSortOrder = 'desc'; // Tri initialement décroissant
         }
 
         // Effectuer le tri
@@ -106,14 +106,14 @@ $(document).ready(function() {
 
             // Si la valeur est un nombre, on effectue un tri numérique
             if (typeof valA === 'number' && typeof valB === 'number') {
-                return currentSortOrder === 'asc' ? valA - valB : valB - valA;
+                return currentSortOrder === 'desc' ? valB - valA : valA - valB;
             }
 
             // Sinon, on effectue un tri alphabétique
             if (typeof valA === 'string' && typeof valB === 'string') {
-                return currentSortOrder === 'asc' 
-                    ? valA.localeCompare(valB) 
-                    : valB.localeCompare(valA);
+                return currentSortOrder === 'desc' 
+                    ? valB.localeCompare(valA) 
+                    : valA.localeCompare(valB);
             }
 
             return 0; // En cas de types différents ou valeurs non triables
@@ -131,7 +131,7 @@ $(document).ready(function() {
 
         // Mettre en gras la colonne triée
         $("th").css("font-weight", "normal");
-        $(`th[data-sort="${column}"]`).css("font-weight", "bold");
+        $(`th button[data-sort="${column}"]`).css("font-weight", "bold");
 
         afficheTable(currentPage);
     }
