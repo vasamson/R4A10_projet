@@ -9,8 +9,11 @@
     </head>
     <body>
         <header>
-            <h1>Liste des Pays</h1>
-        </header>
+            <div class="logo-container">
+              <h1>Informations sur les Pays</h1>
+              <p>Découvrez des informations fascinantes sur les pays du monde entier !</p>
+            </div>
+          </header>
         <main>
             <table>
                 <thead>
@@ -28,10 +31,19 @@
                     <!-- lignes remplies dynamiquement via le script_v1 -->
                 </tbody>
             </table>
-            <span id="btn-pag"></span>
-            <p id="pagination"></p>
+            <div id="pagination-container">
+                <span id="btn-pag" class="pagination-button">
+                    <p id="pagination" class="pagination-text"></p>
+                </span>
+            </div>
         </main>
         <div id="cache"></div>
+        <footer>
+            <div class="footer-container">
+              <p>&copy; 2025 | Tous droits réservés</p>
+              <p>Réalisé avec ❤️ par Valentin, Odin et Joseph</p>
+            </div>
+          </footer>
         <script src="../data/countries.js"></script>
         <script src="../data/class_country.js"></script>
         <script src="script_v3.js"></script>
