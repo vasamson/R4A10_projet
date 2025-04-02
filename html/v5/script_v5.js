@@ -91,12 +91,15 @@ $(document).ready(function() {
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
-            currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc'; // Inverse l'ordre du tri
+            // Inverser l'ordre du tri (si on clique sur la même colonne)
+            currentSortOrder = currentSortOrder === 'asc' ? 'desc' : 'asc';
         } else {
+            // Si on change de colonne, on trie par ordre croissant par défaut
             currentSortColumn = column;
-            currentSortOrder = 'asc'; // Si on change de colonne, on trie par ordre croissant
+            currentSortOrder = 'asc';
         }
 
+        // Effectuer le tri
         filteredCountries.sort((a, b) => {
             let valA = a[column];
             let valB = b[column];
@@ -106,7 +109,7 @@ $(document).ready(function() {
                 return currentSortOrder === 'asc' ? valA - valB : valB - valA;
             }
 
-            // Sinon on effectue un tri alphabétique
+            // Sinon, on effectue un tri alphabétique
             if (typeof valA === 'string' && typeof valB === 'string') {
                 return currentSortOrder === 'asc' 
                     ? valA.localeCompare(valB) 
@@ -116,15 +119,19 @@ $(document).ready(function() {
             return 0; // En cas de types différents ou valeurs non triables
         });
 
-        // Pour départager les égalités, on compare les noms français
+        // Si deux pays ont la même valeur, on les départage par nom (français)
         if (currentSortColumn !== 'flags') {
             filteredCountries.sort((a, b) => {
                 if (a[currentSortColumn] === b[currentSortColumn]) {
-                    return a._nom.localeCompare(b._nom);
+                    return a._nom.localeCompare(b._nom); // départage par le nom
                 }
                 return 0;
             });
         }
+
+        // Mettre en gras la colonne triée
+        $("th").css("font-weight", "normal");
+        $(`th[data-sort="${column}"]`).css("font-weight", "bold");
 
         afficheTable(currentPage);
     }
@@ -132,10 +139,6 @@ $(document).ready(function() {
     // Ajouter l'écouteur d'événement pour le tri sur chaque colonne (sauf "drapeau")
     $("th[data-sort]").click(function() {
         const column = $(this).data("sort");
-
-        // Mettre en gras la colonne triée
-        $("th").css("font-weight", "normal");
-        $(this).css("font-weight", "bold");
 
         sortCountries(column);
     });
