@@ -77,3 +77,16 @@ td img {
     height: 100%;
     z-index: 1;
 }
+
+/* Footer */
+footer {
+    background-color: #f0f0f0;
+    color: #666;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 3rem;
+}
+
+.footer-container p {
+    margin: 0.3rem 0;
+}
