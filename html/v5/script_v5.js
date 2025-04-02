@@ -3,12 +3,11 @@ $(document).ready(function() {
     const continentFilter = $("#continent");
     const languageFilter = $("#language");
     const countryNameFilter = $("#country-name");
-    const cacheDiv = $("#cache");
     const itemsPerPage = 25;
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; // On commence en tri décroissant
+    let currentSortOrder = 'desc'; // Début en décroissant (Z → A)
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -89,10 +88,10 @@ $(document).ready(function() {
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
-            // Si on clique sur la même colonne, on inverse l'ordre du tri
+            // Inverser le tri si on clique sur la même colonne
             currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
         } else {
-            // Si on change de colonne, on commence par un tri décroissant par défaut
+            // Nouveau tri sur une colonne : commencer en décroissant
             currentSortColumn = column;
             currentSortOrder = 'desc';
         }
@@ -116,27 +115,32 @@ $(document).ready(function() {
         // En cas d'égalité, trier par nom du pays
         filteredCountries.sort((a, b) => {
             if (a[currentSortColumn] === b[currentSortColumn]) {
-                return a._nom.localeCompare(b._nom);
+                return currentSortOrder === 'desc'
+                    ? b._nom.localeCompare(a._nom)
+                    : a._nom.localeCompare(b._nom);
             }
             return 0;
         });
 
-        // Mise en gras du bouton correspondant
-        $("button[data-sort]").css("font-weight", "normal");
-        $(`button[data-sort="${column}"]`).css("font-weight", "bold");
+        // Mettre en gras l'en-tête de colonne triée
+        $("th").css("font-weight", "normal");
+        $(`th:contains(${capitalizeFirstLetter(column)})`).css("font-weight", "bold");
 
         afficheTable(currentPage);
     }
 
-    // Ajout des événements sur les boutons de tri
-    $(document).on("click", "button[data-sort]", function() {
-        const column = $(this).data("sort");
-        sortCountries(column);
-    });
-
-    if (cacheDiv.length) {
-        cacheDiv.hide();
+    // Fonction pour capitaliser la première lettre d'une colonne
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
+
+    // Ajouter l'événement de tri sur l'en-tête des colonnes
+    $("th").click(function() {
+        const column = $(this).text().toLowerCase(); // Récupérer le nom de la colonne en minuscules
+        if (column !== "drapeau") { // Exclure la colonne "drapeau"
+            sortCountries(column);
+        }
+    });
 
     continentFilter.change(updateFilters);
     languageFilter.change(updateFilters);
