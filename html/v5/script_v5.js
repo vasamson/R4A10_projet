@@ -3,11 +3,12 @@ $(document).ready(function() {
     const continentFilter = $("#continent");
     const languageFilter = $("#language");
     const countryNameFilter = $("#country-name");
+    const cacheDiv = $("#cache");
     const itemsPerPage = 25;
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; // Début en décroissant (Z → A)
+    let currentSortOrder = 'desc'; // On commence en tri décroissant
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -88,10 +89,10 @@ $(document).ready(function() {
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
-            // Inverser le tri si on clique sur la même colonne
+            // Si on clique sur la même colonne, on inverse l'ordre du tri
             currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
         } else {
-            // Nouveau tri sur une colonne : commencer en décroissant
+            // Si on change de colonne, on commence par un tri décroissant par défaut
             currentSortColumn = column;
             currentSortOrder = 'desc';
         }
@@ -115,14 +116,12 @@ $(document).ready(function() {
         // En cas d'égalité, trier par nom du pays
         filteredCountries.sort((a, b) => {
             if (a[currentSortColumn] === b[currentSortColumn]) {
-                return currentSortOrder === 'desc'
-                    ? b._nom.localeCompare(a._nom)
-                    : a._nom.localeCompare(b._nom);
+                return a._nom.localeCompare(b._nom);
             }
             return 0;
         });
 
-        // Mettre en gras le bouton trié
+        // Mise en gras du bouton correspondant
         $("button[data-sort]").css("font-weight", "normal");
         $(`button[data-sort="${column}"]`).css("font-weight", "bold");
 
@@ -134,6 +133,10 @@ $(document).ready(function() {
         const column = $(this).data("sort");
         sortCountries(column);
     });
+
+    if (cacheDiv.length) {
+        cacheDiv.hide();
+    }
 
     continentFilter.change(updateFilters);
     languageFilter.change(updateFilters);
