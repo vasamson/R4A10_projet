@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Liste des Pays</title>
-        <link rel="stylesheet" href="../html/style.css">
+        <link rel="stylesheet" href="../style.css">
     </head>
     <body>
         <header>
@@ -26,9 +26,12 @@
                     <!-- lignes remplies dynamiquement via le script_v1 -->
                 </tbody>
             </table>
+            <span id="btn-pag"></span>
+            <p id="pagination"></p>
         </main>
-        <script src="../html/data/countries.js"></script>
-        <script src="../html/data/class_country.js"></script>
-        <script src="script_v1.js"></script>
+        <div id="cache"></div>
+        <script src="../data/countries.js"></script>
+        <script src="../data/class_country.js"></script>
+        <script src="script_v3.js"></script>
     </body>
 </html>
