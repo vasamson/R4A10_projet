@@ -13,12 +13,13 @@ document.addEventListener("DOMContentLoaded", function() {
         const row = document.createElement("tr");
     
         // cellules de texte
+        // on met "N/a" pour tous si il y a un quelconque problème (attribut / valeur non existant(e) ou NaN)
         const columns = [
-            countryObj._nom,
-            countryObj._population,
-            countryObj.getSurface(),
-            countryObj.getPopDensity(),
-            countryObj._continent
+            countryObj._nom ?? "N/a",
+            countryObj._population ?? "N/a",
+            countryObj.getSurface() ?? "N/a",
+            Number.isFinite(countryObj.getPopDensity()) ? countryObj.getPopDensity() : "N/a",
+            countryObj._continent ?? "N/a"
         ].map(text => {
             const cellule = document.createElement("td");
             cellule.textContent = text;

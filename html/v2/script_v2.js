@@ -28,15 +28,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // Cellules de texte
             const columns = [
-                countryObj._nom,
-                countryObj._population,
-                countryObj.getSurface(),
-                countryObj.getPopDensity(),
-                countryObj._continent
+                countryObj._nom ?? "N/a",
+                countryObj._population ?? "N/a",
+                countryObj.getSurface() ?? "N/a",
+                Number.isFinite(countryObj.getPopDensity()) ? countryObj.getPopDensity() : "N/a",
+                countryObj._continent ?? "N/a"
             ].map(text => {
-                const cell = document.createElement("td");
-                cell.textContent = text;
-                return cell;
+                const cellule = document.createElement("td");
+                cellule.textContent = text;
+                return cellule;
             });
 
             // Cellule d'image (drapeau)
