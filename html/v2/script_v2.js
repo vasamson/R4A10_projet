@@ -52,7 +52,7 @@ $(document).ready(function() {
     }
 
     function gestionBoutons(page) {
-        const $conteneurBtn = $("#btn-pag").empty(); // les anciens boutons disparaissent
+        const $conteneurBtn = $("#pagination-container").empty(); // les anciens boutons disparaissent
 
         // bouton "Précédent"
         if (page > 1) {
