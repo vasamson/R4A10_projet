@@ -39,7 +39,7 @@ $(document).ready(function() {
             const matchesContinent = !continentFilter.val() || country._continent === continentFilter.val();
             const matchesLanguage = !languageFilter.val() || 
                 (country._languages && Object.values(country._languages).some(lang => 
-                    lang.name.toLowerCase().includes(languageFilter.val().toLowerCase())
+                    lang.name.toLowerCase() === languageFilter.val().toLowerCase()
                 ));
             const matchesName = !countryNameFilter.val() || removeAccents(country._nom.toLowerCase()).includes(removeAccents(countryNameFilter.val().toLowerCase()));
             return matchesContinent && matchesLanguage && matchesName;
@@ -53,10 +53,8 @@ $(document).ready(function() {
         const countriesToShow = filteredCountries.slice(startIndex, endIndex);
 
         countriesToShow.forEach(country => {
-            const languages = Array.isArray(country.getLanguages()) 
-                ? country.getLanguages().map(lang => lang.split(" (")[0]).join(", ") 
-                : country.getLanguages();
-
+            let languages = country._languages ? Object.values(country._languages).map(lang => lang.name).join(", ") : "N/A";
+            
             const row = $(
                 `<tr>
                     <td>${country._nom}</td>
