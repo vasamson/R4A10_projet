@@ -8,7 +8,7 @@ $(document).ready(function() {
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; 
+    let currentSortOrder = 'desc'; // Par défaut, tri décroissant (Z → A ou du plus grand au plus petit)
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -55,8 +55,6 @@ $(document).ready(function() {
         const countriesToShow = filteredCountries.slice(startIndex, endIndex);
 
         countriesToShow.forEach(country => {
-            let languages = country._languages ? country._languages.map(lang => lang.name).join(", ") : "N/A";
-            
             const row = $(
                 `<tr>
                     <td>${country._nom}</td>
@@ -90,41 +88,42 @@ $(document).ready(function() {
     }
 
     function sortCountries(column) {
-        // Définir le tri en Z → A ou décroissant par défaut
         if (currentSortColumn === column) {
+            // Inverser l'ordre si on clique sur la même colonne
             currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
         } else {
+            // Si on change de colonne, on commence toujours par un tri décroissant (Z → A)
             currentSortColumn = column;
-            currentSortOrder = 'desc';  // On force l'ordre décroissant
+            currentSortOrder = 'desc';
         }
-    
+
         filteredCountries.sort((a, b) => {
             let valA = a[column];
             let valB = b[column];
-    
+
             if (valA == null) valA = "";
             if (valB == null) valB = "";
-    
+
             // Tri numérique ou alphabétique inversé
             return currentSortOrder === 'desc'
                 ? valB.toString().localeCompare(valA.toString(), 'fr', { ignorePunctuation: true })
                 : valA.toString().localeCompare(valB.toString(), 'fr', { ignorePunctuation: true });
         });
-    
+
+        // En cas d'égalité, trier par nom (A → Z)
+        filteredCountries.sort((a, b) => {
+            if (a[currentSortColumn] === b[currentSortColumn]) {
+                return a._nom.localeCompare(b._nom);
+            }
+            return 0;
+        });
+
         afficheTable(currentPage);
     }
-    
-    // Attacher l'événement sur les boutons
+
+    // Ajout des événements sur les boutons de tri
     $(document).on("click", "button[data-sort]", function() {
         const column = $(this).data("sort");
-        sortCountries(column);
-    });
-    
-
-    // Ajouter l'écouteur d'événement pour le tri sur chaque bouton
-    $("button[data-sort]").click(function() {
-        const column = $(this).data("sort");
-
         sortCountries(column);
     });
 
