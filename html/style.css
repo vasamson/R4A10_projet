@@ -70,11 +70,14 @@ header p {
     font-weight: bold;
     background-color: aqua;
     border-radius: 20px;
-    width: 150px;
+    /* width: 100px; */
     display: flex;
     height: 40px;
     flex-direction: row;
     align-items: center;
+    padding: 10px;
+    margin-right: 10px;
+    margin-left: 10px;
 }
 
 table {
