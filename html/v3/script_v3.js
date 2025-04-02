@@ -99,6 +99,19 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         console.log(pays);
+
+        // On récupère l'article "boite-details"
+
+        article_details = document.getElementById('boite-details');
+        header_popup = article_details.querySelector('header');
+
+        img_header = header_popup.querySelector('img');
+        img_header.src = pays.getFlags();
+
+        titre_header = header_popup.querySelector('h2');
+        titre_header.textContent = pays._nom;
+
+
     }
     
     
