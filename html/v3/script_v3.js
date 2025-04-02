@@ -114,12 +114,14 @@ document.addEventListener("DOMContentLoaded", function() {
         image_header.classList.add("popup-flag");
         titre_popup = document.createElement("h2");
         titre_popup.classList.add("popup-title");
-        titre_popup.textContent.add(`${pays._nom}`);
+        titre_popup.textContent = (`${pays._nom}`);
 
         header_popup.appendChild(image_header);
         header_popup.appendChild(titre_popup);
 
         boite_details.appendChild(header_popup);
+
+        document.getElementById('cache').appendChild(boite_details);
     }
     
     
