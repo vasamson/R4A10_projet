@@ -138,7 +138,20 @@ $(document).ready(function() {
     $("th").click(function() {
         const column = $(this).text().toLowerCase(); // Récupérer le nom de la colonne en minuscules
         if (column !== "drapeau") { // Exclure la colonne "drapeau"
-            sortCountries(column);
+            // Associer chaque titre de colonne à la clé correcte de l'objet pays
+            const columnMapping = {
+                "nom": "_nom",
+                "population": "_population",
+                "langue": "languages", // Remarquer que pour 'languages' tu pourrais avoir une logique de tri spécifique
+                "surface (km²)": "surface",
+                "densité (hab/km²)": "density",
+                "continent": "_continent"
+            };
+
+            const mappedColumn = columnMapping[column];
+            if (mappedColumn) {
+                sortCountries(mappedColumn);
+            }
         }
     });
 
