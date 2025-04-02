@@ -136,8 +136,8 @@ $(document).ready(function() {
         afficheTable(currentPage);
     }
 
-    // Ajouter l'écouteur d'événement pour le tri sur chaque colonne (sauf "drapeau")
-    $("th[data-sort]").click(function() {
+    // Ajouter l'écouteur d'événement pour le tri sur chaque bouton
+    $("button[data-sort]").click(function() {
         const column = $(this).data("sort");
 
         sortCountries(column);
