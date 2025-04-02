@@ -8,7 +8,7 @@ $(document).ready(function() {
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; // Par défaut, tri décroissant (Z → A ou du plus grand au plus petit)
+    let currentSortOrder = 'desc'; // On commence en tri décroissant
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -89,10 +89,10 @@ $(document).ready(function() {
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
-            // Inverser l'ordre si on clique sur la même colonne
+            // Si on clique sur la même colonne, on inverse l'ordre du tri
             currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
         } else {
-            // Si on change de colonne, on commence toujours par un tri décroissant (Z → A)
+            // Si on change de colonne, on commence par un tri décroissant par défaut
             currentSortColumn = column;
             currentSortOrder = 'desc';
         }
@@ -104,19 +104,26 @@ $(document).ready(function() {
             if (valA == null) valA = "";
             if (valB == null) valB = "";
 
-            // Tri numérique ou alphabétique inversé
+            if (typeof valA === 'number' && typeof valB === 'number') {
+                return currentSortOrder === 'desc' ? valB - valA : valA - valB;
+            }
+
             return currentSortOrder === 'desc'
                 ? valB.toString().localeCompare(valA.toString(), 'fr', { ignorePunctuation: true })
                 : valA.toString().localeCompare(valB.toString(), 'fr', { ignorePunctuation: true });
         });
 
-        // En cas d'égalité, trier par nom (A → Z)
+        // En cas d'égalité, trier par nom du pays
         filteredCountries.sort((a, b) => {
             if (a[currentSortColumn] === b[currentSortColumn]) {
                 return a._nom.localeCompare(b._nom);
             }
             return 0;
         });
+
+        // Mise en gras du bouton correspondant
+        $("button[data-sort]").css("font-weight", "normal");
+        $(`button[data-sort="${column}"]`).css("font-weight", "bold");
 
         afficheTable(currentPage);
     }
