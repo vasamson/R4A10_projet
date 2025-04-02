@@ -502,10 +502,11 @@ span#btn-pag.pagination-button {
 #language {
     padding: 5px;
     border-radius: 5px;
-    border: 1px solid #ccc;
     background-color: #f9f9f9;
     font-size: 14px;
     cursor: pointer;
+    border:none;
+    
 }
 
 #continent:hover,
