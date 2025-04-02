@@ -62,8 +62,7 @@ td {
 
 tbody tr {
     transition: 0.25s ease-in-out;
-    border-left: 2px solid #d7d7d7;
-    border-right: 2px solid #d7d7d7;
+    background-color: burlywood;
 }
 
 tbody tr:hover {
