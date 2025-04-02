@@ -49,8 +49,6 @@ $(document).ready(function() {
 
         $tableBody.append($fragment);
         gestionBoutons(page);
-
-        $("#pagination").text(`Page : ${currentPage} / ${totalPages}`);
     }
 
     function gestionBoutons(page) {
@@ -64,6 +62,14 @@ $(document).ready(function() {
             });
             $conteneurBtn.append($btnPrecedent);
         }
+
+        const $pagination = $("<p>", {
+            id: "pagination",
+            class: "pagination-text"
+        });
+
+        $pagination.text(`Page : ${currentPage} / ${totalPages}`);
+        $conteneurBtn.append($pagination);
 
         // bouton "Suivant"
         if (page < totalPages) {
