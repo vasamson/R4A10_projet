@@ -122,17 +122,24 @@ $(document).ready(function() {
             return 0;
         });
 
-        // Mettre en gras le bouton trié
-        $("button[data-sort]").css("font-weight", "normal");
-        $(`button[data-sort="${column}"]`).css("font-weight", "bold");
+        // Mettre en gras l'en-tête de colonne triée
+        $("th").css("font-weight", "normal");
+        $(`th:contains(${capitalizeFirstLetter(column)})`).css("font-weight", "bold");
 
         afficheTable(currentPage);
     }
 
-    // Ajout des événements sur les boutons de tri
-    $(document).on("click", "button[data-sort]", function() {
-        const column = $(this).data("sort");
-        sortCountries(column);
+    // Fonction pour capitaliser la première lettre d'une colonne
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+
+    // Ajouter l'événement de tri sur l'en-tête des colonnes
+    $("th").click(function() {
+        const column = $(this).text().toLowerCase(); // Récupérer le nom de la colonne en minuscules
+        if (column !== "drapeau") { // Exclure la colonne "drapeau"
+            sortCountries(column);
+        }
     });
 
     continentFilter.change(updateFilters);
