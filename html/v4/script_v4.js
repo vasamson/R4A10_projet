@@ -38,9 +38,16 @@ $(document).ready(function() {
 
     function getFilteredCountries() {
         return Array.from(Country.all_countries.values()).filter(country => {
+            // Filtre pour choisir quel continent afficher
             const matchesContinent = !$continentFilter.val() || country._continent === $continentFilter.val();
-            const matchesLanguage = !$languageFilter.val() || (country._languages && Object.values(country._languages).some(lang => lang.name === $languageFilter.val()));
+            // Filtre pour choisir quelle langue afficher
+            const matchesLanguage = !languageFilter.val() || 
+            (country._languages && Object.values(country._languages).some(lang => 
+                lang.name.includes(languageFilter.val()) || lang.iso639_2.includes(languageFilter.val())
+            ));
+            // Filtre pour choisir quel pays afficher via le nom
             const matchesName = !$countryNameFilter.val() || removeAccents(country._nom.toLowerCase()).includes(removeAccents($countryNameFilter.val().toLowerCase()));
+            
             return matchesContinent && matchesLanguage && matchesName;
         });
     }
