@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
             row.innerHTML = `
                 <td>${country._nom}</td>
                 <td>${country._population}</td>
-                <td>${languages}</td>
+                <td>${country_languages}</td>
                 <td>${country.getSurface()}</td>
                 <td>${country.getPopDensity()}</td>
                 <td>${country._continent}</td>
