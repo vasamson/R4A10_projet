@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function getFilteredCountries() {
         return Array.from(Country.all_countries.values()).filter(country => {
             const matchesContinent = !continentFilter.value || country._continent === continentFilter.value;
-            const matchesLanguage = !languageFilter.value || (country._languages && Object.values(country._languages).some(lang => lang === languageFilter.value || lang.name === languageFilter.value));
+            const matchesLanguage = !languageFilter.value || (country._languages && Object.values(country._languages).some(lang => lang.name === languageFilter.value));
             const matchesName = !countryNameFilter.value || removeAccents(country._nom.toLowerCase()).includes(removeAccents(countryNameFilter.value.toLowerCase()));
             return matchesContinent && matchesLanguage && matchesName;
         });
@@ -57,10 +57,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         countriesToShow.forEach(country => {
             const row = document.createElement("tr");
+            const languages = country._languages ? Object.values(country._languages).map(lang => lang.name).join(", ") : "N/A";
             row.innerHTML = `
                 <td>${country._nom}</td>
                 <td>${country._population}</td>
-                <td>${language._nom}</td>
+                <td>${languages}</td>
                 <td>${country.getSurface()}</td>
                 <td>${country.getPopDensity()}</td>
                 <td>${country._continent}</td>
