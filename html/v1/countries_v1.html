@@ -1,45 +1,49 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <title>Liste des Pays</title>
-        <link rel="stylesheet" href="../style.css">
-        <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
-    </head>
-    <body>
-        <header>
-          <div class="logo-container">
+
+<head>
+    <meta charset="utf-8">
+    <title>Liste des Pays</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=K2D:wght@400;700&display=swap" rel="stylesheet">
+    <script src="../jquery-3.6.3-min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
             <h1>Informations sur les Pays</h1>
             <p>Découvrez des informations fascinantes sur les pays du monde entier !</p>
-          </div>
-        </header>
-        <main>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Population</th>
-                        <th>Surface : km²</th>
-                        <th>Densité : habitants au km² </th>
-                        <th>Continent</th>
-                        <th>drapeaux</th>
-                    </tr>
-                    
-                </thead>
-                <tbody id="countries-list">
-                    <!-- lignes remplies dynamiquement via le script_v1 -->
-                </tbody>
-            </table>
-        </main>
-        <footer>
-          <div class="footer-container">
+        </div>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Population</th>
+                    <th>Surface : km²</th>
+                    <th>Densité : habitants au km² </th>
+                    <th>Continent</th>
+                    <th>drapeaux</th>
+                </tr>
+
+            </thead>
+            <tbody id="countries-list">
+                <!-- lignes remplies dynamiquement via le script_v1 -->
+            </tbody>
+        </table>
+    </main>
+    <footer>
+        <div class="footer-container">
             <p>&copy; 2025 | Tous droits réservés</p>
             <p>Réalisé avec ❤️ par Valentin, Odin et Joseph</p>
-          </div>
-        </footer>
+        </div>
+    </footer>
 
-        <script src="../data/countries.js"></script>
-        <script src="../data/class_country.js"></script>
-        <script src="script_v1.js"></script>
-    </body>
+    <script src="../data/countries.js"></script>
+    <script src="../data/class_country.js"></script>
+    <script src="script_v1.js"></script>
+</body>
+
 </html>

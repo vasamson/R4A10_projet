@@ -62,6 +62,7 @@ td {
 
 tbody tr {
     transition: 0.25s ease-in-out;
+    background-color: #f0f0f0;
 }
 
 tbody tr:hover {
@@ -118,3 +119,48 @@ main {
     margin-top: 3em;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+
+
+@media screen and (max-width: 428px) {
+    body {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+
+    header {
+        padding: 2rem 1rem;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    main {
+        width: 90%;
+        padding: 30px;
+        flex-direction: column;
+    }
+
+    table {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    th, td {
+        padding: 8px;
+    }
+
+    img {
+        width: 40px;
+    }
+
+    footer {
+        padding: 1rem;
+    }
+}
+
