@@ -116,11 +116,77 @@ document.addEventListener("DOMContentLoaded", function() {
         infos_generales = article_details.querySelector("#general");
 
         texteContinent = infos_generales.querySelector("#location");
-        texteContinent.textContent = pays._continent;
+        texteContinent.textContent = pays._continent ?? "N/a";
 
         texteCapitale = infos_generales.querySelector("#capital");
-        texteCapitale.textContent = pays._capitale;
+        texteCapitale.textContent = pays._capitale ?? "N/a";
 
+        textePopulation = infos_generales.querySelector("#population");
+        textePopulation.textContent = pays._population ?? "N/a";
+
+        texteSuperficie = infos_generales.querySelector("#area");
+        texteSuperficie.textContent = pays.getSurface() ?? "N/a";
+
+        texteDensite = infos_generales.querySelector("#density");
+        texteDensite.textContent = pays.getPopDensity() ?? "N/a";
+
+        /* LANGUES */
+
+        ongletLangues = article_details.querySelector("#languages");
+
+        listeLangues = ongletLangues.querySelector("ul");
+        paysLangues = pays.getLanguages();
+
+        paysLangues.forEach(langue => {
+            const liste = document.createElement('li');
+            liste.textContent = langue.toString();
+            liste.classList.add('popup-list-item');
+            listeLangues.appendChild(liste);
+        });
+
+        /* MONNAIES */
+
+        ongletMonnaies = article_details.querySelector("#currency");
+
+        listeMonnaies = ongletMonnaies.querySelector("ul");
+        paysCurrency = pays.getCurrencies();
+
+        paysCurrency.forEach(currency => {
+            const liste = document.createElement('li');
+            liste.textContent = currency.toString();
+            liste.classList.add('popup-list-item');
+            listeMonnaies.appendChild(liste);
+        });
+
+        /* PAYS FRONTALIERS */
+
+        ongletVoisins = article_details.querySelector("#borders");
+
+        tableauVoisins = ongletVoisins.querySelector('tbody');
+        voisins = pays.getBorders();
+
+        voisins.forEach(voisin => {
+            const ligne = document.createElement('tr');
+
+            const data_code = document.createElement('td');
+            data_code.textContent = voisin._code_alpha3;
+
+            const data_nom = document.createElement('td');
+            data_nom.textContent = voisin._nom;
+
+            const data_continent = document.createElement('td');
+            data_continent.textContent = voisin._continent;
+
+            const data_drapeau = document.createElement('td');
+            data_drapeau.innerHTML = `<img src="${voisin.getFlags()}" alt="${voisin._nom}">`;
+
+            ligne.appendChild(data_code);
+            ligne.appendChild(data_nom);
+            ligne.appendChild(data_continent);
+            ligne.appendChild(data_drapeau);
+
+            tableauVoisins.appendChild(ligne);
+        });
 
     }
     
