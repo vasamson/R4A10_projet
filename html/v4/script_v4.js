@@ -19,7 +19,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         Country.all_countries.forEach(country => {
             if (country._continent) continents.add(country._continent);
-            if (country._languages) Object.values(country._languages).forEach(lang => languages.add(lang));
+        });
+
+        Language.all_languages.forEach(language => {
+            languages.add(language._nom);
         });
 
         continents.forEach(continent => {
@@ -40,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
     function getFilteredCountries() {
         return Array.from(Country.all_countries.values()).filter(country => {
             const matchesContinent = !continentFilter.value || country._continent === continentFilter.value;
-            const matchesLanguage = !languageFilter.value || (country._languages && Object.values(country._languages).some(lang => lang === languageFilter.value));
+            const matchesLanguage = !languageFilter.value || (country._languages && Object.values(country._languages).some(lang => lang === languageFilter.value || lang.name === languageFilter.value));
             const matchesName = !countryNameFilter.value || removeAccents(country._nom.toLowerCase()).includes(removeAccents(countryNameFilter.value.toLowerCase()));
             return matchesContinent && matchesLanguage && matchesName;
         });
