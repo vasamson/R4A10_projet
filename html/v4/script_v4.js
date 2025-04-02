@@ -42,10 +42,10 @@ $(document).ready(function() {
         return Array.from(Country.all_countries.values()).filter(country => {
             const matchesContinent = !continentFilter.val() || country._continent === continentFilter.val();
 
-            // Modification pour vérifier si la langue sélectionnée est présente dans les langues du pays
+            // Vérifie si la langue sélectionnée est contenue dans la liste des langues du pays
             const matchesLanguage = !languageFilter.val() || 
-                (language.nom && Object.values(language.nom).some(lang => 
-                    lang.name && lang.name.toLowerCase().includes(languageFilter.val().toLowerCase())
+                (country._languages && Object.values(country._languages).some(lang => 
+                    lang.name.toLowerCase() === languageFilter.val().toLowerCase()
                 ));
 
             const matchesName = !countryNameFilter.val() || removeAccents(country._nom.toLowerCase()).includes(removeAccents(countryNameFilter.val().toLowerCase()));
@@ -62,13 +62,15 @@ $(document).ready(function() {
         const countriesToShow = filteredCountries.slice(startIndex, endIndex);
 
         countriesToShow.forEach(country => {
-            const languages = country._languages ? Object.values(country._languages).map(lang => lang.name).join(", ") : "N/A";
+            // Récupération des noms des langues sans le code ISO
+            const languages = country.getLanguages().split(",").map(lang => lang.split(" (")[0]).join(", ");
+
             const row = $(`
                 <tr>
                     <td>${country._nom}</td>
                     <td>${country._population}</td>
-                    <td>${language.nom}</td>
-                   <td>${country.getSurface()}</td>
+                    <td>${languages}</td>
+                    <td>${country.getSurface()}</td>
                     <td>${country.getPopDensity()}</td>
                     <td>${country._continent}</td>
                     <td><img src="${country.getFlags()}" alt="Drapeau de ${country._nom}" width="50"></td>
