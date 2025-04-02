@@ -113,7 +113,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         /* INFORMATIONS GÉNÉRALES */
 
-        infos_generales = article
+        infos_generales = article_details.querySelector("#general");
+
+        texteContinent = infos_generales.querySelector("#location");
+        texteContinent.textContent = pays._continent;
+
+        texteCapitale = infos_generales.querySelector("#capital");
+        texteCapitale.textContent = pays._capitale;
 
 
     }
