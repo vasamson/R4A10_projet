@@ -7,7 +7,7 @@ $(document).ready(function() {
     let currentPage = 1;
     let filteredCountries = [];
     let currentSortColumn = null;
-    let currentSortOrder = 'desc'; // Tri initial en ordre décroissant
+    let currentSortOrder = 'desc'; // Début en décroissant (Z → A)
 
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -88,12 +88,12 @@ $(document).ready(function() {
 
     function sortCountries(column) {
         if (currentSortColumn === column) {
-            // Si on clique sur la même colonne, on inverse l'ordre du tri
+            // Inverser le tri si on clique sur la même colonne
             currentSortOrder = currentSortOrder === 'desc' ? 'asc' : 'desc';
         } else {
-            // Si on change de colonne, on commence par un tri décroissant par défaut
+            // Nouveau tri sur une colonne : commencer en décroissant
             currentSortColumn = column;
-            currentSortOrder = 'desc'; // Tri initialement décroissant
+            currentSortOrder = 'desc';
         }
 
         filteredCountries.sort((a, b) => {
@@ -122,37 +122,17 @@ $(document).ready(function() {
             return 0;
         });
 
-        // Mettre en gras l'en-tête de colonne triée
-        $("th").css("font-weight", "normal");
-        $(`th:contains(${capitalizeFirstLetter(column)})`).css("font-weight", "bold");
+        // Mettre en gras le bouton trié
+        $("button[data-sort]").css("font-weight", "normal");
+        $(`button[data-sort="${column}"]`).css("font-weight", "bold");
 
         afficheTable(currentPage);
     }
 
-    // Fonction pour capitaliser la première lettre d'une colonne
-    function capitalizeFirstLetter(string) {
-        return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
-    // Ajouter l'événement de tri sur l'en-tête des colonnes
-    $("th").click(function() {
-        const column = $(this).text().toLowerCase(); // Récupérer le nom de la colonne en minuscules
-        if (column !== "drapeau") { // Exclure la colonne "drapeau"
-            // Associer chaque titre de colonne à la clé correcte de l'objet pays
-            const columnMapping = {
-                "nom": "_nom",
-                "population": "_population",
-                "langue": "languages", // Remarquer que pour 'languages' tu pourrais avoir une logique de tri spécifique
-                "surface (km²)": "surface",
-                "densité (hab/km²)": "density",
-                "continent": "_continent"
-            };
-
-            const mappedColumn = columnMapping[column];
-            if (mappedColumn) {
-                sortCountries(mappedColumn);
-            }
-        }
+    // Ajout des événements sur les boutons de tri
+    $(document).on("click", "button[data-sort]", function() {
+        const column = $(this).data("sort");
+        sortCountries(column);
     });
 
     continentFilter.change(updateFilters);
