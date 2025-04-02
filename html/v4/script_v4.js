@@ -1,9 +1,9 @@
 $(document).ready(function() {
-    const $tableBody = $("#countries-list");
-    const $continentFilter = $("#continent");
-    const $languageFilter = $("#language");
-    const $countryNameFilter = $("#country-name");
-    const $cacheDiv = $("#cache");
+    const tableBody = $("#countries-list");
+    const continentFilter = $("#continent");
+    const languageFilter = $("#language");
+    const countryNameFilter = $("#country-name");
+    const cacheDiv = $("#cache");
     const itemsPerPage = 25;
     let currentPage = 1;
     let filteredCountries = [];
@@ -13,6 +13,7 @@ $(document).ready(function() {
         return;
     }
 
+    // Remplir les filtres avec les continents et langues
     function populateFilters() {
         const continents = new Set();
         const languages = new Set();
@@ -25,82 +26,89 @@ $(document).ready(function() {
             languages.add(language._nom);
         });
 
-        // Ajout des continents dans le filtre
+        // Remplir le filtre des continents
         continents.forEach(continent => {
-            $continentFilter.append(new Option(continent, continent));
+            continentFilter.append(new Option(continent, continent));
         });
 
-        // Ajout des langues dans le filtre
+        // Remplir le filtre des langues
         languages.forEach(language => {
-            $languageFilter.append(new Option(language, language));
+            languageFilter.append(new Option(language, language));
         });
     }
 
+    // Récupérer les pays filtrés en fonction des critères
     function getFilteredCountries() {
         return Array.from(Country.all_countries.values()).filter(country => {
-            // Filtre pour choisir quel continent afficher
-            const matchesContinent = !$continentFilter.val() || country._continent === $continentFilter.val();
-            // Filtre pour choisir quelle langue afficher
+            const matchesContinent = !continentFilter.val() || country._continent === continentFilter.val();
+
+            // Modification pour vérifier si la langue sélectionnée est présente dans les langues du pays
             const matchesLanguage = !languageFilter.val() || 
-            (country._languages && Object.values(country._languages).some(lang => 
-                lang.name.includes(languageFilter.val()) || lang.iso639_2.includes(languageFilter.val())
-            ));
-            // Filtre pour choisir quel pays afficher via le nom
-            const matchesName = !$countryNameFilter.val() || removeAccents(country._nom.toLowerCase()).includes(removeAccents($countryNameFilter.val().toLowerCase()));
-            
+                (country._languages && Object.values(country._languages).some(lang => 
+                    lang.name && lang.name.toLowerCase().includes(languageFilter.val().toLowerCase())
+                ));
+
+            const matchesName = !countryNameFilter.val() || removeAccents(country._nom.toLowerCase()).includes(removeAccents(countryNameFilter.val().toLowerCase()));
+
             return matchesContinent && matchesLanguage && matchesName;
         });
     }
 
+    // Afficher le tableau des pays
     function afficheTable(page) {
-        $tableBody.empty();
+        tableBody.empty();  // Vider le tableau avant de le remplir
         const startIndex = (page - 1) * itemsPerPage;
         const endIndex = startIndex + itemsPerPage;
         const countriesToShow = filteredCountries.slice(startIndex, endIndex);
 
         countriesToShow.forEach(country => {
             const languages = country._languages ? Object.values(country._languages).map(lang => lang.name).join(", ") : "N/A";
-            const row = `
+            const row = $(`
                 <tr>
                     <td>${country._nom}</td>
-                    <td>${country._population}</td>
+                    <td>${country._po.pulation}</td>
                     <td>${country.getLanguages()}</td>
-                    <td>${country.getSurface()}</td>
+                   <td>${country.getSurface()}</td>
                     <td>${country.getPopDensity()}</td>
                     <td>${country._continent}</td>
                     <td><img src="${country.getFlags()}" alt="Drapeau de ${country._nom}" width="50"></td>
                 </tr>
-            `;
-            $tableBody.append(row);
+            `);
+            tableBody.append(row);
         });
+
         updatePagination();
     }
 
+    // Mettre à jour la pagination
     function updatePagination() {
-        const totalPages = Math.ceil(filteredCountries.length / itemsPerPage);
-        $("#pagination").text(`Page : ${currentPage} / ${totalPages}`);
+        const paginationContainer = $("#pagination");
+        paginationContainer.html(`Page : ${currentPage} / ${Math.ceil(filteredCountries.length / itemsPerPage)}`);
     }
 
+    // Mettre à jour les filtres
     function updateFilters() {
         filteredCountries = getFilteredCountries();
         currentPage = 1;
         afficheTable(currentPage);
     }
 
+    // Supprimer les accents des caractères
     function removeAccents(str) {
         return str.normalize("NFD").replace(/\p{Diacritic}/gu, "");
     }
 
-    // Assurer que #cache est bien masqué dès le chargement de la page
-    if ($cacheDiv.length) {
-        $cacheDiv.hide();
+    // Masquer le div de cache au démarrage
+    if (cacheDiv.length) {
+        cacheDiv.hide();
     }
 
-    // Écouter les événements sur les filtres
-    $continentFilter.on("change", updateFilters);
-    $languageFilter.on("change", updateFilters);
-    $countryNameFilter.on("input", updateFilters);
-    
+    // Ajouter les écouteurs d'événements pour les filtres
+    continentFilter.change(updateFilters);
+    languageFilter.change(updateFilters);
+    countryNameFilter.on("input", updateFilters);
+
+    // Initialiser les filtres et afficher le tableau
     populateFilters();
     filteredCountries = getFilteredCountries();
     afficheTable(currentPage);
