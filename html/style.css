@@ -526,3 +526,10 @@ span#btn-pag.pagination-button {
 tbody tr:hover {
     background-color : pink;
 }
+
+.fermer-popup {
+background-color: #ff0000;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+}
