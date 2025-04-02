@@ -31,69 +31,75 @@
             <span id="btn-pag"></span>
             <p id="pagination"></p>
         </main>
-        <div id="cache">
-            <article id="boite-details">
-                <header>
-                    <img src="https://flagcdn.com/de.svg">
-                    <h2>Allemagne</h2>
-                </header>
-                <section>
-                    <article>
-                        <h2>Informations Générales</h2>
-                        <article>
-                            <span>
-                                <h3>Localisation : </h3><p>Europe (Central Europe)</p>
-                            </span>
-                            <span>
-                                <h3>Capitale : </h3><p>Berlin</p>
-                            </span>
-                            <span>
-                                <h3>Population : </h3><p>83240525</p>
-                            </span>
-                            <span>
-                                <h3>Superficie (km²) : </h3><p>357114</p>
-                            </span>
-                            <span>
-                                <h3>Densité de population (hab / km²) : </h3><p>233</p>
-                            </span>
-                        </article>
-                    </article>
-                    <article>
-                        <h2>Langues parlées</h2>
-                        <ul>
-                            <li>German</li>
-                        </ul>
-                    </article>
-                    <article>
-                        <h2>Monnaies</h2>
-                        <ul>
-                            <li>Euro (€)</li>
-                        </ul>
-                    </article>
-                    <article>
-                        <h2>Tableau des pays frontaliers</h2>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Code pays</th>
-                                    <th>Nom</th>
-                                    <th>Continent</th>
-                                    <th>Drapeau</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>AUT</td>
-                                    <td>Austria</td>
-                                    <td>Europe</td>
-                                    <td><img src="https://flagcdn.com/w320/at.png"></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </article>
-                </section>
+        <div id="cache" class="popup-overlay">
+    <article id="boite-details" class="popup-box">
+        <header class="popup-header">
+            <img src="https://flagcdn.com/de.svg" class="popup-flag">
+            <h2 class="popup-title">Allemagne</h2>
+        </header>
+        <section class="popup-content">
+            <article class="popup-section">
+                <h2 class="popup-section-title">Informations Générales</h2>
+                <article class="popup-info">
+                    <span class="popup-info-item">
+                        <h3 class="popup-info-label">Localisation : </h3>
+                        <p class="popup-info-value">Europe (Central Europe)</p>
+                    </span>
+                    <span class="popup-info-item">
+                        <h3 class="popup-info-label">Capitale : </h3>
+                        <p class="popup-info-value">Berlin</p>
+                    </span>
+                    <span class="popup-info-item">
+                        <h3 class="popup-info-label">Population : </h3>
+                        <p class="popup-info-value">83,240,525</p>
+                    </span>
+                    <span class="popup-info-item">
+                        <h3 class="popup-info-label">Superficie (km²) : </h3>
+                        <p class="popup-info-value">357,114</p>
+                    </span>
+                    <span class="popup-info-item">
+                        <h3 class="popup-info-label">Densité de population (hab / km²) : </h3>
+                        <p class="popup-info-value">233</p>
+                    </span>
+                </article>
             </article>
-        </div>
+            <article class="popup-section">
+                <h2 class="popup-section-title">Langues parlées</h2>
+                <ul class="popup-list">
+                    <li class="popup-list-item">German</li>
+                </ul>
+            </article>
+            <article class="popup-section">
+                <h2 class="popup-section-title">Monnaies</h2>
+                <ul class="popup-list">
+                    <li class="popup-list-item">Euro (€)</li>
+                </ul>
+            </article>
+            <article class="popup-section">
+                <h2 class="popup-section-title">Tableau des pays frontaliers</h2>
+                <table class="popup-table">
+                    <thead class="popup-table-head">
+                        <tr>
+                            <th>Code pays</th>
+                            <th>Nom</th>
+                            <th>Continent</th>
+                            <th>Drapeau</th>
+                        </tr>
+                    </thead>
+                    <tbody class="popup-table-body">
+                        <tr>
+                            <td>AUT</td>
+                            <td>Austria</td>
+                            <td>Europe</td>
+                            <td><img src="https://flagcdn.com/w320/at.png" class="popup-country-flag"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </article>
+        </section>
+    </article>
+</div>
+
         <script src="../data/countries.js"></script>
         <script src="../data/class_country.js"></script>
         <script src="script_v3.js"></script>
