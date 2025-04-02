@@ -124,7 +124,7 @@ td img {
 }
 
 #cache {
-    display: none;
+    display: flex;
     position: fixed;
     top: 0;
     left: 0;
@@ -443,7 +443,6 @@ span#btn-pag.pagination-button {
 #filters select,
 #filters input {
     padding: 10px;
-    font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 5px;
     transition: 0.3s ease-in-out;
