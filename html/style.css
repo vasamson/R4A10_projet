@@ -213,3 +213,175 @@ main {
 span#btn-pag.pagination-button {
         display:flex;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Fond de la popup */
+.popup-overlay {
+    display: none; /* Cachée par défaut */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Contenu de la popup */
+.popup-box {
+    background: white;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* En-tête de la popup */
+.popup-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+/* Image du drapeau */
+.popup-flag {
+    width: 50px;
+    height: auto;
+    border-radius: 5px;
+}
+
+/* Titre */
+.popup-title {
+    font-size: 1.8rem;
+    color: #333;
+}
+
+/* Contenu */
+.popup-content {
+    text-align: left;
+}
+
+/* Section de la popup */
+.popup-section {
+    margin-bottom: 20px;
+}
+
+/* Titres des sections */
+.popup-section-title {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: #0077cc;
+}
+
+/* Informations générales */
+.popup-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.popup-info-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.popup-info-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.popup-info-value {
+    color: #666;
+}
+
+/* Liste */
+.popup-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.popup-list-item {
+    background: #f4f4f4;
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+}
+
+/* Tableau */
+.popup-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: white;
+}
+
+.popup-table-head {
+    background: #0077cc;
+    color: white;
+}
+
+.popup-table th, .popup-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
+.popup-country-flag {
+    width: 40px;
+    height: auto;
+    border-radius: 3px;
+}
+
+/* Bouton de fermeture */
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #555;
+}
+
+.popup-close:hover {
+    color: #d00;
+}
+
+/* Affichage de la popup */
+.popup-overlay.active {
+    display: flex;
+}
