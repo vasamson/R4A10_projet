@@ -19,14 +19,14 @@
             <div id="filters" >
                 <div class="filter-continent">
                     <label for="continent">Continent :</label>
-                    <select id="continent">
+                    <select id="f-continent" name="continent">
                         <option value="">Choisir</option>
                     </select>
                 </div>
                 
                 <div class="filter-language">
                     <label for="language">Langue :</label>
-                    <select id="language">
+                    <select id="f-langues" name="langues">
                         <option value="">Choisir</option>
                     </select>
                 </div>
@@ -42,7 +42,6 @@
                     <tr>
                         <th>Nom</th>
                         <th>Population</th>
-                        <th>Langue</th>
                         <th>Surface : km²</th>
                         <th>Densité : habitants au km² </th>
                         <th>Continent</th>
@@ -59,6 +58,75 @@
                 </span>
             </div>
         </main>
+        <div id="cache" class="popup-overlay">
+            <article id="boite-details" class="popup-box">
+                <button id="close-popup" class="popup-close">✖</button>
+                <header class="popup-header">
+                    <img src="" class="popup-flag">
+                    <h2 class="popup-title"></h2>
+                </header>
+                <section class="popup-content">
+                    <article id="general" class="popup-section">
+                        <h2 class="popup-section-title">Informations Générales</h2>
+                        <article class="popup-info">
+                            <span class="popup-info-item">
+                                <h3 class="popup-info-label">Localisation : </h3>
+                                <p id="location" class="popup-info-value"></p>
+                            </span>
+                            <span class="popup-info-item">
+                                <h3 class="popup-info-label">Capitale : </h3>
+                                <p id="capital" class="popup-info-value"></p>
+                            </span>
+                            <span class="popup-info-item">
+                                <h3 class="popup-info-label">Population : </h3>
+                                <p id="population" class="popup-info-value"></p>
+                            </span>
+                            <span class="popup-info-item">
+                                <h3 class="popup-info-label">Superficie (km²) : </h3>
+                                <p id="area" class="popup-info-value"></p>
+                            </span>
+                            <span class="popup-info-item">
+                                <h3 class="popup-info-label">Densité de population (hab / km²) : </h3>
+                                <p id="density" class="popup-info-value"></p>
+                            </span>
+                        </article>
+                    </article>
+                    <article id="languages" class="popup-section">
+                        <h2 class="popup-section-title">Langues parlées</h2>
+                        <ul class="popup-list">
+                            <!-- <li class="popup-list-item"></li> -->
+                        </ul>
+                    </article>
+                    <article id="currency" class="popup-section">
+                        <h2 class="popup-section-title">Monnaies</h2>
+                        <ul class="popup-list">
+                            <!-- <li class="popup-list-item">Euro (€)</li> -->
+                        </ul>
+                    </article>
+                    <article id="borders" class="popup-section">
+                        <h2 class="popup-section-title">Tableau des pays frontaliers</h2>
+                        <table class="popup-table">
+                            <thead class="popup-table-head">
+                                <tr>
+                                    <th>Code pays</th>
+                                    <th>Nom</th>
+                                    <th>Continent</th>
+                                    <th>Drapeau</th>
+                                </tr>
+                            </thead>
+                            <tbody class="popup-table-body">
+<!--                                 <tr>
+                                    <td>AUT</td>
+                                    <td>Austria</td>
+                                    <td>Europe</td>
+                                    <td><img src="https://flagcdn.com/w320/at.png" class="popup-country-flag"></td>
+                                </tr> -->
+                            </tbody>
+                        </table>
+                    </article>
+                </section>
+            </article>
+        </div>
         <footer>
           <div class="footer-container">
             <p>&copy; 2025 | Tous droits réservés</p>
@@ -67,8 +135,9 @@
         </footer>
         <div id="cache"></div>
         <script src="../data/countries.js"></script>
-        <script src="../data/class_country.js"></script>
+        <script src="../data/class_currency.js"></script>
         <script src="../data/class_language.js"></script>
-        <script src="script_v4.js"></script>
+        <script src="../data/class_country.js"></script>
+        <script src="script_v4_2.js"></script>
     </body>
 </html>

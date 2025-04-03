@@ -115,7 +115,7 @@ Country.all_countries.forEach((countryObj, code) => {
 /*     countryObj.getCurrencies().forEach(currency => {
         console.log(currency.toString());
     }); */
-/*     countryObj.getLanguages().forEach(language => {
-        console.log(language.toString());
-    }) */
+    countryObj.getLanguages().forEach(language => {
+        console.log(language._nom.toLowerCase());
+    })
 });

@@ -1,5 +1,5 @@
-document.addEventListener("DOMContentLoaded", function() {
-    const tableBody = document.getElementById("countries-list");
+$(document).ready(function() {
+    const $tableBody = $("#countries-list");
     
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -15,52 +15,46 @@ document.addEventListener("DOMContentLoaded", function() {
     const totalPages = Math.ceil(Country.all_countries.size / nbParPage);
 
     function afficheTable(page) {
-        tableBody.innerHTML = ""; // le tableau est vidé pour être rempli par les nouvelles valeurs, au cas où
+        $tableBody.empty(); // le tableau est vidé pour être rempli par les nouvelles valeurs, au cas où
 
         const startIndex = (page - 1) * nbParPage;
         const endIndex = startIndex + nbParPage;
         const countriesToShow = Array.from(Country.all_countries.values()).slice(startIndex, endIndex);
 
-        const fragment = document.createDocumentFragment();
+        const $fragment = $(document.createDocumentFragment());
 
         countriesToShow.forEach(countryObj => {
-            const row = document.createElement("tr");
+            const $row = $("<tr>");
 
-            row.setAttribute("data-code",countryObj._code_alpha3); // ajout de l'attribut pour identifier le pays
-            row.addEventListener('click',() => {
+            $row.attr("data-code", countryObj._code_alpha3); // ajout de l'attribut (pour identifier le pays)
+            $row.on('click', function() {
                 afficheDetails(countryObj._code_alpha3);
             });
 
-            // cellules de texte
+            // Cellules de texte
             const columns = [
                 countryObj._nom ?? "N/a",
                 countryObj._population ?? "N/a",
                 countryObj.getSurface() ?? "N/a",
                 Number.isFinite(countryObj.getPopDensity()) ? countryObj.getPopDensity() : "N/a",
                 countryObj._continent ?? "N/a"
-            ].map(text => {
-                const cellule = document.createElement("td");
-                cellule.textContent = text;
-                return cellule;
-            });
+            ].map(text => $("<td>").text(text));
 
             // Cellule d'image (drapeau)
-            const flagCell = document.createElement("td");
-            const flagImg = document.createElement("img");
-            flagImg.src = countryObj.getFlags();
-            flagImg.alt = `Drapeau de ${countryObj._nom}`;
-            flagImg.style.width = "50px";
-            flagImg.style.height = "auto";
+            const $flagCell = $("<td>");
+            const $flagImg = $("<img>").attr({
+                src: countryObj.getFlags(),
+                alt: `Drapeau de ${countryObj._nom}`
+            }).css({ width: "50px", height: "auto" });
 
-            flagCell.appendChild(flagImg);
-            row.append(...columns, flagCell);
-            fragment.appendChild(row);
+            $flagCell.append($flagImg);
+            $row.append(...columns, $flagCell);
+            $fragment.append($row);
         });
 
-        tableBody.appendChild(fragment);
+        $tableBody.append($fragment);
         gestionPagination(page);
-
-    };
+    }
 
     function gestionPagination(page) {
         const $conteneurBtn = $("#btn-pag").empty(); // les anciens boutons disparaissent

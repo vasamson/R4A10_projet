@@ -26,6 +26,8 @@ $(document).ready(function() {
         countriesToShow.forEach(countryObj => {
             const $row = $("<tr>");
 
+            
+
             // Cellules de texte
             const columns = [
                 countryObj._nom ?? "N/a",
