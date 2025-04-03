@@ -42,6 +42,9 @@ $(document).ready(function() {
 
             // Cellule d'image (drapeau)
             const $flagCell = $("<td>");
+            $flagCell.on('click',function(){
+                console.log("Ta mère");
+            });
             const $flagImg = $("<img>").attr({
                 src: countryObj.getFlags(),
                 alt: `Drapeau de ${countryObj._nom}`
