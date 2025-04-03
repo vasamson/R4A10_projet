@@ -48,10 +48,10 @@ $(document).ready(function() {
         });
 
         $tableBody.append($fragment);
-        gestionBoutons(page);
+        gestionPagination(page);
     }
 
-    function gestionBoutons(page) {
+    function gestionPagination(page) {
         const $conteneurBtn = $("#btn-pag").empty(); // les anciens boutons disparaissent
 
         // bouton "Précédent"

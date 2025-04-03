@@ -58,11 +58,11 @@ document.addEventListener("DOMContentLoaded", function() {
         });
 
         tableBody.appendChild(fragment);
-        gestionBoutons(page);
+        gestionPagination(page);
 
     };
 
-    function gestionBoutons(page) {
+    function gestionPagination(page) {
         const $conteneurBtn = $("#btn-pag").empty(); // les anciens boutons disparaissent
 
         // bouton "Précédent"
@@ -92,112 +92,79 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    function afficheDetails(code_alpha3) {
-
-        document.getElementById('cache').style.display = "flex";
-
+    function afficheDetails(codeAlpha3) {
+        $('#cache').css('display', 'flex');
+    
         const pays = Array.from(Country.all_countries.values()).find(country => {
-            return country._code_alpha3 === code_alpha3;
+            return country._code_alpha3 === codeAlpha3;
         });
-
+    
         console.log(pays);
-
-        // On récupère l'article "boite-details"
-
-        article_details = document.getElementById('boite-details');
-        header_popup = article_details.querySelector('header');
-
-        img_header = header_popup.querySelector('img');
-        img_header.src = pays.getFlags();
-
-        titre_header = header_popup.querySelector('h2');
-        titre_header.textContent = pays._nom;
-
+    
+        let $articleDetails = $('#boite-details');
+        let $headerPopup = $articleDetails.find('header');
+    
+        let $imgHeader = $headerPopup.find('img');
+        $imgHeader.attr('src', pays.getFlags());
+    
+        let $titreHeader = $headerPopup.find('h2');
+        $titreHeader.text(pays._nom);
+    
         /* INFORMATIONS GÉNÉRALES */
-
-        infos_generales = article_details.querySelector("#general");
-
-        texteContinent = infos_generales.querySelector("#location");
-        texteContinent.textContent = pays._continent ?? "N/a";
-
-        texteCapitale = infos_generales.querySelector("#capital");
-        texteCapitale.textContent = pays._capitale ?? "N/a";
-
-        textePopulation = infos_generales.querySelector("#population");
-        textePopulation.textContent = pays._population ?? "N/a";
-
-        texteSuperficie = infos_generales.querySelector("#area");
-        texteSuperficie.textContent = pays.getSurface() ?? "N/a";
-
-        texteDensite = infos_generales.querySelector("#density");
-        texteDensite.textContent = pays.getPopDensity() ?? "N/a";
-
+        let $infosGenerales = $articleDetails.find('#general');
+        $infosGenerales.find('#location').text(pays._continent ?? "N/a");
+        $infosGenerales.find('#capital').text(pays._capitale ?? "N/a");
+        $infosGenerales.find('#population').text(pays._population ?? "N/a");
+        $infosGenerales.find('#area').text(pays.getSurface() ?? "N/a");
+        $infosGenerales.find('#density').text(pays.getPopDensity() ?? "N/a");
+    
         /* LANGUES */
-
-        ongletLangues = article_details.querySelector("#languages");
-
-        listeLangues = ongletLangues.querySelector("ul");
-        paysLangues = pays.getLanguages();
-
-        paysLangues.forEach(langue => {
-            const liste = document.createElement('li');
-            liste.textContent = langue.toString();
-            liste.classList.add('popup-list-item');
-            listeLangues.appendChild(liste);
+        let $listeLangues = $articleDetails.find('#languages ul').empty();
+        pays.getLanguages().forEach(langue => {
+            $('<li>', {
+                text: langue.toString(),
+                class: 'popup-list-item'
+            }).appendTo($listeLangues);
         });
-
+    
         /* MONNAIES */
-
-        ongletMonnaies = article_details.querySelector("#currency");
-
-        listeMonnaies = ongletMonnaies.querySelector("ul");
-        paysCurrency = pays.getCurrencies();
-
-        paysCurrency.forEach(currency => {
-            const liste = document.createElement('li');
-            liste.textContent = currency.toString();
-            liste.classList.add('popup-list-item');
-            listeMonnaies.appendChild(liste);
+        let $listeMonnaies = $articleDetails.find('#currency ul').empty();
+        pays.getCurrencies().forEach(currency => {
+            $('<li>', {
+                text: currency.toString(),
+                class: 'popup-list-item'
+            }).appendTo($listeMonnaies);
         });
-
+    
         /* PAYS FRONTALIERS */
-
-        ongletVoisins = article_details.querySelector("#borders");
-
-        tableauVoisins = ongletVoisins.querySelector('tbody');
-        voisins = pays.getBorders();
-
-        voisins.forEach(voisin => {
-            const ligne = document.createElement('tr');
-
-            const data_code = document.createElement('td');
-            data_code.textContent = voisin._code_alpha3;
-
-            const data_nom = document.createElement('td');
-            data_nom.textContent = voisin._nom;
-
-            const data_continent = document.createElement('td');
-            data_continent.textContent = voisin._continent;
-
-            const data_drapeau = document.createElement('td');
-            data_drapeau.innerHTML = `<img src="${voisin.getFlags()}" alt="${voisin._nom}">`;
-
-            ligne.appendChild(data_code);
-            ligne.appendChild(data_nom);
-            ligne.appendChild(data_continent);
-            ligne.appendChild(data_drapeau);
-
-            tableauVoisins.appendChild(ligne);
-        });
-
+        let $tableauVoisins = $articleDetails.find('#borders tbody').empty();
+        let voisins = pays.getBorders();
+        
+        if (voisins.length === 0) {
+            $('<tr>').append(
+                $('<td>', {
+                    text: "Aucun voisin trouvé pour ce pays",
+                    attr: { colspan: 4 },
+                    class: 'text-center'
+                })
+            ).appendTo($tableauVoisins);
+        } else {
+            voisins.forEach(voisin => {
+                $('<tr>').append(
+                    $('<td>').text(voisin._code_alpha3),
+                    $('<td>').text(voisin._nom),
+                    $('<td>').text(voisin._continent),
+                    $('<td>').html(`<img src="${voisin.getFlags()}" alt="${voisin._nom}">`)
+                ).appendTo($tableauVoisins);
+            });
+        }
+    
         /* GESTION DE LA CROIX */
-
-        var btnClose = article_details.querySelector('#close-popup');
-        btnClose.addEventListener('click', function(){
-            document.getElementById('cache').style.display = "none";
+        $articleDetails.find('#close-popup').off('click').on('click', function() {
+            $('#cache').css('display', 'none');
         });
-
     }
+    
     
     
 
