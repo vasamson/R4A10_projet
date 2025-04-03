@@ -30,7 +30,7 @@ $(document).ready(function() {
     function applyFilters() {
         let filteredTable = Array.from(Country.all_countries.values());
 
-        // Appliquer tous les filtres cumulativement
+        // pour appliquer tous les filtres de façon cumulative
         if (activeFilters.continent) {
             filteredTable = filtreContinent(filteredTable, activeFilters.continent);
         }
@@ -41,9 +41,9 @@ $(document).ready(function() {
             filteredTable = filtreNom(filteredTable, activeFilters.nom);
         }
 
-        // Recalculer la pagination
+        // on recalcule la pagination (pour éviter les pages vides)
         totalPages = Math.ceil(filteredTable.length / nbParPage);
-        currentPage = 1; // Revenir à la première page après un changement de filtre
+        currentPage = 1; // reset de la page actuelle
         afficheTable(currentPage, filteredTable);
     }
 
@@ -103,6 +103,8 @@ $(document).ready(function() {
         tableBody.append(fragment);
         gestionPagination(page);
     }
+
+    /* V2 (PAGINATION) */
 
     function gestionPagination(page) {
         const $conteneurBtn = $("#btn-pag").empty();
@@ -175,7 +177,7 @@ $(document).ready(function() {
         });
     }
 
-    // Affichage de détails du pays
+    /* V3 (DETAILS) */
     function afficheDetails(codeAlpha3) {
         $('#cache').css('display', 'flex');
         const pays = Array.from(Country.all_countries.values()).find(country => country._code_alpha3 === codeAlpha3);

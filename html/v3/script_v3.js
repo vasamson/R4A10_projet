@@ -93,8 +93,6 @@ $(document).ready(function() {
             return country._code_alpha3 === codeAlpha3;
         });
     
-        console.log(pays);
-    
         let $articleDetails = $('#boite-details');
         let $headerPopup = $articleDetails.find('header');
     
