@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    const tableBody = $("#countries-list");
+    const $tableBody = $("#countries-list");
     
     if (!Country || !Country.all_countries) {
         console.error("Les données des pays ne sont pas disponibles.");
@@ -68,70 +68,69 @@ $(document).ready(function() {
     });
 
     function afficheTable(page, filteredTable) {
-        tableBody.empty();  // vider la table avant de la remplir
-
+        $tableBody.empty(); // Vider la table avant de la remplir
+    
         const startIndex = (page - 1) * nbParPage;
         const endIndex = startIndex + nbParPage;
         const countriesToShow = filteredTable.slice(startIndex, endIndex);
-
+    
         const fragment = $(document.createDocumentFragment());
-
-        countriesToShow.forEach(countryObj => {
-            const row = $("<tr>").attr("data-code", countryObj._code_alpha3);
-
-            row.on('click', function() {
+    
+        $.each(countriesToShow, function (_, countryObj) {
+            const $row = $("<tr>").attr("data-code", countryObj._code_alpha3);
+    
+            $row.on("click", function () {
                 afficheDetails(countryObj._code_alpha3);
             });
-
+    
             const columns = [
                 countryObj._nom ?? "N/a",
                 countryObj._population ?? "N/a",
                 countryObj.getSurface() ?? "N/a",
                 Number.isFinite(countryObj.getPopDensity()) ? countryObj.getPopDensity() : "N/a",
                 countryObj._continent ?? "N/a"
-            ].map(text => {
+            ].map(function (text) {
                 return $("<td>").text(text);
             });
-
-            const flagCell = $("<td>");
-            const flagImg = $("<img>").attr({
+    
+            const $flagCell = $("<td>").addClass("flag-cell");
+            const $flagImg = $("<img>").attr({
                 "src": countryObj.getFlags(),
                 "alt": `Drapeau de ${countryObj._nom}`,
                 "style": "width: 50px; height: auto;"
             });
-
-            flagCell.append(flagImg);
-            row.append(columns).append(flagCell);
-            fragment.append(row);
-        });
-
-        tableBody.append(fragment);
-
-        $tableBody.on('click', function (event) {
-            let target = $(event.target);
-            
-            console.log(target.closest(".flag-cell").length);
     
-            // on vérifie si c'est bien le drapeau qui a été cliqué
-            if (target.is("img") && target.closest(".flag-cell").length) {
-                event.stopPropagation(); // pas sûr que ce soit utile
+            $flagCell.append($flagImg);
+            $row.append(columns).append($flagCell);
+            fragment.append($row);
+        });
+    
+        $tableBody.append(fragment);
+    
+        $tableBody.off('click').on('click', function (event) {
+            let $target = $(event.target);
+    
+            console.log($target.closest(".flag-cell").length);
+    
+            // Vérifie si c'est bien le drapeau qui a été cliqué
+            if ($target.is("img") && $target.closest(".flag-cell").length) {
+                event.stopPropagation(); // Pas sûr que ce soit utile
                 $('#boite-details').hide();
                 $('#cache').css('display', 'flex');
-                $('.img-detail').attr('src', target.attr('src')).show();
-                $('.img-detail').attr('alt',target.attr('alt')).show();
+                $('.img-detail').attr('src', $target.attr('src')).show();
+                $('.img-detail').attr('alt', $target.attr('alt')).show();
             } else {
                 $('.img-detail').hide();
                 $('#boite-details').show();
             }
         });
-
-        $('#cache').on('click', function () {
+    
+        $('#cache').off('click').on('click', function () {
             $(this).hide();
         });
-
+    
         gestionPagination(page);
     }
-
     /* V2 (PAGINATION) */
 
     function gestionPagination(page) {
@@ -283,7 +282,7 @@ $(document).ready(function() {
                 comparison = a._population - b._population;
             } else if (colKey === 'surface') {
                 comparison = a.getSurface() - b.getSurface();
-            } else if (colKey === 'densite') {
+            } else if (colKey === 'densité') {
                 comparison = a.getPopDensity() - b.getPopDensity();
             } else if (colKey === 'continent') {
                 comparison = a._continent.localeCompare(b._continent);
