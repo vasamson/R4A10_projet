@@ -42,6 +42,7 @@ $(document).ready(function() {
 
             // Cellule d'image (drapeau)
             const $flagCell = $("<td>");
+            $flagCell.addClass("flag-cell");
             $flagCell.on('click',function(){
                 console.log("Ta mère");
             });
@@ -56,6 +57,29 @@ $(document).ready(function() {
         });
 
         $tableBody.append($fragment);
+        
+        $tableBody.on('click', function (event) {
+            let target = $(event.target);
+            
+            console.log(target.closest(".flag-cell").length);
+    
+            // on vérifie si c'est bien le drapeau qui a été cliqué
+            if (target.is("img") && target.closest(".flag-cell").length) {
+                event.stopPropagation(); // pas sûr que ce soit utile
+                $('#boite-details').hide();
+                $('#cache').css('display', 'flex');
+                $('.img-detail').attr('src', target.attr('src')).show();
+                $('.img-detail').attr('alt',target.attr('alt')).show();
+            } else {
+                $('.img-detail').hide();
+                $('#boite-details').show();
+            }
+        });
+
+        $('#cache').on('click', function () {
+            $(this).hide();
+        });
+
         gestionPagination(page);
     }
 

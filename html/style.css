@@ -134,6 +134,20 @@ td img {
     z-index: 1;
 }
 
+#cache > div:first-of-type{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20;
+}
+
+#cache > img:first-of-type{
+    width: 50vw;
+}
+
 #boite-details{
     background-color: white;
 }
